@@ -1,0 +1,207 @@
+### Arguments / Parameters ____________________________________________________
+
+# Display codes (computer screens):
+set $laptop_display     "DP-2"
+set $external_display   "HDMI-0"
+
+# Vim-style navigation keycodes:
+set $up    45
+set $down  46
+set $left  44
+set $right 47
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:DejaVu Sans Mono 8
+
+# default modkkier
+set $mod  Mod5+Shift
+# navigation layer
+set $modb Mod4+Mod5
+
+hide_edge_borders both
+
+
+### External Application Calls_________________________________________________
+
+bindcode  $mod+55      exec chromium
+bindcode  $modb+55    exec urxvt
+bindsym   $mod+k      exec dmenu_run
+bindcode  $mod+61     kill
+bindcode  $modb+61    kill
+
+# Open new terminal window in current active directory
+bindsym Control+Shift+k exec urxvt -cd "`xcwd`" --meta8
+
+
+#### Focus Container / Output _________________________________________________
+
+# containers
+bindcode $mod+$left   focus left
+bindcode $mod+$down   focus down
+bindcode $mod+$up     focus up
+bindcode $mod+$right  focus right
+bindsym  Prior        focus parent
+bindsym  Next         focus child
+
+# output
+bindcode 56 focus output left
+
+
+### Move Window _______________________________________________________________
+
+# move focused window
+bindcode $modb+$left  move left
+bindcode $modb+$down  move down
+bindcode $modb+$up    move up
+bindcode $modb+$right move right
+
+
+### Container Management ______________________________________________________
+
+# split vertically or horizontally
+bindcode 29 split h
+bindcode 28 split v
+
+bindcode $modb+58 fullscreen toggle
+
+bindsym Left  layout stacking
+bindsym Down  layout tabbed
+bindsym Right layout toggle split
+
+
+### Floating Windows __________________________________________________________
+
+# use Mouse+mod to drag floating windows to their wanted position
+# floating_modifier $mod
+
+# toggle tiling / floating
+#bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+Mod2+space focus mode_toggle
+
+# Set floating windows:
+for_window [class="Cheese" instance="cheese"] floating enable
+for_window [class="R_x11" instance="r_x11"]   floating enable
+for_window [class="Toplevel"]                 floating enable
+for_window [class="Evince" instance="evince"] floating enable
+
+
+### Workspaces ________________________________________________________________
+
+# Rename workspace:
+bindsym $mod+u exec i3-input -F 'rename workspace to %s' -P 'New name: '
+
+# Switch to workspace:
+bindcode $mod+39 workspace number 1
+bindcode $mod+38 workspace number 2
+bindcode $mod+54 workspace number 3
+bindcode $mod+26 workspace number 4
+bindcode $mod+53 workspace number 5
+bindcode $mod+25 workspace number 6
+bindcode $mod+52 workspace number 7
+bindcode $mod+24 workspace number 8
+bindcode $mod+94 workspace number 9
+bindcode $mod+40 workspace number 10
+
+bindcode $modb+39 move container to workspace number 1
+bindcode $modb+38 move container to workspace number 2
+bindcode $modb+54 move container to workspace number 3
+bindcode $modb+26 move container to workspace number 4
+bindcode $modb+53 move container to workspace number 5
+bindcode $modb+25 move container to workspace number 6
+bindcode $modb+52 move container to workspace number 7
+bindcode $modb+24 move container to workspace number 8
+bindcode $modb+94 move container to workspace number 9
+bindcode $modb+40 move container to workspace number 10
+
+# Target workspaces to specific displays. The idea is that odd outputs are
+# on the laptop display and even outputs on the external display:
+workspace 1  output $laptop_display
+workspace 2  output $external_display
+workspace 3  output $laptop_display
+workspace 4  output $external_display
+workspace 5  output $laptop_display
+workspace 6  output $external_display
+workspace 7  output $laptop_display
+workspace 8  output $external_display
+workspace 9  output $laptop_display
+workspace 10 output $external_display
+
+
+### Resize Mode _______________________________________________________________
+
+bindsym $mod+l mode "resize"
+
+mode "resize" {
+    bindsym $left       resize shrink width  3 px or 3 ppt
+    bindsym $down       resize grow   height 3 px or 3 ppt
+    bindsym $up         resize shrink height 3 px or 3 ppt
+    bindsym $right      resize grow   width  3 px or 3 ppt
+
+    # Exit from resize mode (back to default)
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+### Status Bar(s) _____________________________________________________________
+
+bar {
+    output $external_display
+    status_command i3blocks
+    colors {
+      # Type             #border #bg     #font
+      focused_workspace  #ffaaaa #000000 #aaaa00
+      inactive_workspace #000000 #000000 #aaaa00
+      active_workspace   #000000 #ffaa00 #000000
+    }
+    position bottom
+}
+
+bar {
+    output $laptop_display
+    status_command i3blocks
+    tray_output primary
+    colors {
+      # Type             #border #bg     #font
+      focused_workspace  #ffaaaa #000000 #aaaa00
+      inactive_workspace #000000 #000000 #aaaa00
+      active_workspace   #000000 #ffaa00 #000000
+    }
+    position top
+}
+
+
+### Color _____________________________________________________________________
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #ffffff #ffffff #000000 #2e9ef4   #285577
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.focused_inactive #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+
+### Custom Control Key-Bindings _______________________________________________
+
+# audio volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# display brightness
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+
+### Scratchpad ________________________________________________________________
+
+# move the currently focused window to the scratchpad
+#bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+#bindsym $mod+minus scratchpad show
