@@ -45,7 +45,7 @@ bindsym  Prior        focus parent
 bindsym  Next         focus child
 
 # output
-bindcode 56 focus output left
+bindcode 56 focus output up
 
 
 ### Move Window _______________________________________________________________
@@ -60,8 +60,8 @@ bindcode $modb+$right move right
 ### Container Management ______________________________________________________
 
 # split vertically or horizontally
-bindcode 29 split h
-bindcode 28 split v
+#bindcode 29 split h
+#bindcode 28 split v
 
 bindcode $modb+58 fullscreen toggle
 
