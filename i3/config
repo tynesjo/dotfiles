@@ -30,7 +30,7 @@ bindsym   $mod+k      exec dmenu_run
 bindcode  $mod+61     kill
 bindcode  $modb+61    kill
 bindcode  $mod+60     exec emacs
-bindcode  $modb+56    exec ~/keyboard/change-keyboard-layout.sh
+bindcode  49    exec ~/keyboard/change-keyboard-layout.sh
 
 # Open new terminal window in current active directory
 bindsym Control+Shift+k exec urxvt -cd "`xcwd`" --meta8
@@ -67,9 +67,9 @@ bindcode $modb+$right move right
 
 bindcode $modb+58 fullscreen toggle
 
-bindsym $mod+Left  layout stacking
-bindsym $mod+Down  layout tabbed
-bindsym $mod+Right layout toggle split
+#bindsym $mod+Left  layout stacking
+#bindsym $mod+Down  layout tabbed
+#bindsym $mod+Right layout toggle split
 
 
 ### Floating Windows __________________________________________________________
