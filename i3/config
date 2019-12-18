@@ -66,9 +66,9 @@ bindcode $modb+$right move right
 
 bindcode $modb+58 fullscreen toggle
 
-bindsym Left  layout stacking
-bindsym Down  layout tabbed
-bindsym Right layout toggle split
+bindsym $mod+Left  layout stacking
+bindsym $mod+Down  layout tabbed
+bindsym $mod+Right layout toggle split
 
 
 ### Floating Windows __________________________________________________________
