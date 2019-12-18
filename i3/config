@@ -47,7 +47,7 @@ bindsym  Prior        focus parent
 bindsym  Next         focus child
 
 # output
-bindcode $mod+56 focus output right
+bindcode $mod+56 focus output down
 
 
 ### Move Window _______________________________________________________________
