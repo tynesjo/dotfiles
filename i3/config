@@ -83,9 +83,8 @@ for_window [class="Evince" instance="evince"] floating enable
 
 
 ### Workspaces
-
-# Rename workspace:
-bindsym $mod+u exec i3-input -F 'rename workspace to %s' -P 'New name: '
+# Rename workspace (do not really use workspace names)
+# bindsym $mod+u exec i3-input -F 'rename workspace to %s' -P 'New name: '
 
 # Switch to workspace:
 bindcode $mod+39 workspace number 1
@@ -110,8 +109,7 @@ bindcode $modb+24 move container to workspace number 8
 bindcode $modb+94 move container to workspace number 9
 bindcode $modb+40 move container to workspace number 10
 
-# Target workspaces to specific displays. The idea is that odd outputs are
-# on the laptop display and even outputs on the external display:
+# Target workspaces to specific displays (odd to laptop and even to external)
 workspace 1  output $laptop_display
 workspace 2  output $external_display
 workspace 3  output $laptop_display
@@ -134,20 +132,22 @@ mode "i3" {
     bindcode   $left        focus left 
     bindcode   $up          focus up
     bindcode   $down        focus down
-    bindsym    u            focus parent
-    bindsym    y            focus child
+
+    #bindsym    u            focus parent
+    #bindsym    y            focus child
     # Move
     bindcode Mod5+$right  move right
     bindcode Mod5+$left   move left 
     bindcode Mod5+$up     move up
     bindcode Mod5+$down   move down
-    # Layout
-    bindsym s  layout stacking
-    bindsym t  layout tabbed
-    bindsym r  layout toggle split
+    ## Layout
+    #bindsym s  layout stacking
+    #bindsym t  layout tabbed
+    #bindsym r  layout toggle split
     # Split
-    bindsym f split h
-    bindsym p split v
+    #bindsym f split h
+    #bindsym p split v
+
     # 3-pixel moves
     bindcode Shift+$right resize grow   width  3 px or 3 ppt
     bindcode Shift+$left  resize shrink width  3 px or 3 ppt
@@ -158,6 +158,29 @@ mode "i3" {
     bindcode Mod4+$left  resize shrink width  1 px or 1 ppt
     bindcode Mod4+$up    resize grow   height 1 px or 1 ppt
     bindcode Mod4+$down  resize shrink height 1 px or 1 ppt
+    # Switch to workspace:
+    bindcode 39 workspace number 1
+    bindcode 38 workspace number 2
+    bindcode 54 workspace number 3
+    bindcode 26 workspace number 4
+    bindcode 53 workspace number 5
+    bindcode 25 workspace number 6
+    bindcode 52 workspace number 7
+    bindcode 24 workspace number 8
+    bindcode 94 workspace number 9
+    bindcode 40 workspace number 10
+    # Move container to workspace: 
+    bindcode Mod5+39 move container to workspace number 1
+    bindcode Mod5+38 move container to workspace number 2
+    bindcode Mod5+54 move container to workspace number 3
+    bindcode Mod5+26 move container to workspace number 4
+    bindcode Mod5+53 move container to workspace number 5
+    bindcode Mod5+25 move container to workspace number 6
+    bindcode Mod5+52 move container to workspace number 7
+    bindcode Mod5+24 move container to workspace number 8
+    bindcode Mod5+94 move container to workspace number 9
+    bindcode Mod5+40 move container to workspace number 10
+
     # Exit back to default mode
     bindsym Escape        mode "default"
     bindsym Return        mode "default"
