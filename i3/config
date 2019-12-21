@@ -133,19 +133,28 @@ workspace 9  output $laptop_display
 workspace 10 output $external_display
 
 
-### Resize Mode _______________________________________________________________
+### Modes
+
+###### Resize Mode
 
 bindsym $mod+l mode "resize"
 
 mode "resize" {
-    bindsym $left       resize shrink width  3 px or 3 ppt
-    bindsym $down       resize grow   height 3 px or 3 ppt
-    bindsym $up         resize shrink height 3 px or 3 ppt
-    bindsym $right      resize grow   width  3 px or 3 ppt
+    # 3-pixel moves
+    bindcode 47  resize grow   width  3 px or 3 ppt
+    bindcode 44  resize shrink width  3 px or 3 ppt
+    bindcode 46  resize grow   height 3 px or 3 ppt
+    bindcode 45  resize shrink height 3 px or 3 ppt
+    # 1-pixel moves
+    bindcode Shift+47  resize grow   width  1 px or 1 ppt
+    bindcode Shift+44  resize shrink width  1 px or 1 ppt
+    bindcode Shift+46  resize grow   height 1 px or 1 ppt
+    bindcode Shift+45  resize shrink height 1 px or 1 ppt
 
     # Exit from resize mode (back to default)
-    bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Tab mode "default"
 }
 
 
