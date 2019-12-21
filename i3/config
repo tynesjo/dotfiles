@@ -43,8 +43,8 @@ bindcode $mod+$left   focus left
 #bindcode $mod+$down   focus down
 bindcode $mod+$up     focus up
 bindcode $mod+$right  focus right
-bindsym  Prior        focus parent
-bindsym  Next         focus child
+#bindsym  Prior        focus parent
+#bindsym  Next         focus child
 
 # output
 bindcode $mod+56 focus output down
@@ -139,10 +139,12 @@ bindsym $mod+l mode "Resize"
 
 mode "Navigation" {
     # Focus
-    bindcode $right       focus right
-    bindcode $left        focus left 
-    bindcode $up          focus up
-    bindcode $down        focus down
+    bindcode   $right       focus right
+    bindcode   $left        focus left 
+    bindcode   $up          focus up
+    bindcode   $down        focus down
+    bindsym    u            focus parent
+    bindsym    y            focus child
     # Move
     bindcode Mod5+$right  move right
     bindcode Mod5+$left   move left 
