@@ -24,7 +24,7 @@ hide_edge_borders both
 
 ### External Application Calls_________________________________________________
 
-bindcode4 $mod+55     exec chromium
+bindcode  $mod+55     exec chromium
 bindcode  $modb+55    exec urxvt
 bindsym   $mod+k      exec dmenu_run
 bindcode  $mod+61     kill
@@ -40,7 +40,7 @@ bindsym Control+Shift+k exec urxvt -cd "`xcwd`" --meta8
 
 # containers
 bindcode $mod+$left   focus left
-bindcode $mod+$down   focus down
+#bindcode $mod+$down   focus down
 bindcode $mod+$up     focus up
 bindcode $mod+$right  focus right
 bindsym  Prior        focus parent
@@ -73,7 +73,7 @@ bindcode $modb+58 fullscreen toggle
 #bindsym $mod+Right layout toggle split
 
 
-### Floating Windows __________________________________________________________
+### Floating Windows
 
 # use Mouse+mod to drag floating windows to their wanted position
 # floating_modifier $mod
@@ -91,7 +91,7 @@ for_window [class="Toplevel"]                 floating enable
 for_window [class="Evince" instance="evince"] floating enable
 
 
-### Workspaces ________________________________________________________________
+### Workspaces
 
 # Rename workspace:
 bindsym $mod+u exec i3-input -F 'rename workspace to %s' -P 'New name: '
@@ -134,12 +134,27 @@ workspace 10 output $external_display
 
 
 ### Modes
+bindsym $mod+m mode "Navigation"
+bindsym $mod+l mode "Resize"
 
-###### Resize Mode
+mode "Navigation" {
+    # Focus
+    bindcode $right       focus right
+    bindcode $left        focus left 
+    bindcode $up          focus up
+    bindcode $down        focus down
+    # Move
+    bindcode Mod5+$right  move right
+    bindcode Mod5+$left   move left 
+    bindcode Mod5+$up     move up
+    bindcode Mod5+$down   move down
+    # Exit back to default mode
+    bindsym Escape        mode "default"
+    bindsym Return        mode "default"
+    bindsym Tab           mode "default"
+}
 
-bindsym $mod+l mode "resize"
-
-mode "resize" {
+mode "Resize" {
     # 3-pixel moves
     bindcode 47  resize grow   width  3 px or 3 ppt
     bindcode 44  resize shrink width  3 px or 3 ppt
@@ -151,14 +166,14 @@ mode "resize" {
     bindcode Shift+46  resize grow   height 1 px or 1 ppt
     bindcode Shift+45  resize shrink height 1 px or 1 ppt
 
-    # Exit from resize mode (back to default)
+    # Exit back to default mode
     bindsym Escape mode "default"
     bindsym Return mode "default"
-    bindsym Tab mode "default"
+    bindsym Tab    mode "default"
 }
 
 
-### Status Bar(s) _____________________________________________________________
+### Status Bar(s)
 
 bar {
     output $external_display
