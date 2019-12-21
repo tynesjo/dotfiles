@@ -1,4 +1,4 @@
-### Arguments / Parameters ____________________________________________________
+### Arguments / Parameters 
 
 # Display codes (computer screens):
 set $laptop_display     "DP-2"
@@ -21,8 +21,7 @@ set $modb Mod4+Mod5
 
 hide_edge_borders both
 
-
-### External Application Calls_________________________________________________
+### External Application Calls
 
 bindcode  $mod+55     exec chromium
 bindcode  $modb+55    exec urxvt
@@ -37,14 +36,11 @@ bindsym Control+Shift+k exec urxvt -cd "`xcwd`" --meta8
 
 
 #### Focus Container/Output
-
 # containers
 bindcode $mod+$left   focus left
-#bindcode $mod+$down   focus down
+bindcode $mod+$down   focus down
 bindcode $mod+$up     focus up
 bindcode $mod+$right  focus right
-#bindsym  Prior        focus parent
-#bindsym  Next         focus child
 
 # output
 bindcode $mod+56 focus output down
@@ -60,7 +56,7 @@ bindcode $modb+$up    move up
 bindcode $modb+$right move right
 
 
-### Container Management ______________________________________________________
+### Container Management 
 
 # split vertically or horizontally
 #bindcode 29 split h
@@ -134,7 +130,7 @@ workspace 10 output $external_display
 
 
 ### Modes
-bindsym $mod+m mode "Navigation"
+bindcode Mod4+46 mode "Navigation"
 bindsym $mod+l mode "Resize"
 
 mode "Navigation" {
@@ -203,7 +199,7 @@ bar {
 }
 
 
-### Color _____________________________________________________________________
+### Color 
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #ffffff #ffffff #000000 #2e9ef4   #285577
@@ -214,7 +210,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 
-### Custom Control Key-Bindings _______________________________________________
+### Custom Control Key-Bindings 
 
 # audio volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
@@ -226,7 +222,7 @@ bindsym XF86MonBrightnessUp   exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 
-### Scratchpad ________________________________________________________________
+### Scratchpad 
 
 # move the currently focused window to the scratchpad
 #bindsym $mod+Shift+minus move scratchpad
