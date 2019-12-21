@@ -37,14 +37,11 @@ hide_edge_borders both
 bindcode  $mod+55     exec chromium
 bindcode  $modb+55    exec urxvt
 bindsym   $mod+k      exec dmenu_run
-bindcode  $mod+61     kill
-bindcode  $modb+61    kill
 bindcode  $mod+60     exec emacs
 bindcode  49    exec ~/keyboard/change-keyboard-layout.sh
 
 # Open new terminal window in current active directory
 bindsym Control+Shift+k exec urxvt -cd "`xcwd`" --meta8
-
 
 #### Focus Container/Output
 # containers
@@ -57,7 +54,6 @@ bindcode $mod+$right  focus right
 bindcode $mod+56 focus output down
 bindcode $mod+42 focus output right
 
-
 ### Move Window
 
 # move focused window
@@ -66,19 +62,9 @@ bindcode $modb+$down  move down
 bindcode $modb+$up    move up
 bindcode $modb+$right move right
 
-
-### Container Management 
-
-# split vertically or horizontally
-
-bindcode $modb+58 fullscreen toggle
-
-
-
 ### Floating Windows
-
 # use Mouse+mod to drag floating windows to their wanted position
-# floating_modifier $mod
+floating_modifier $mod
 
 # toggle tiling / floating
 #bindsym $mod+Shift+space floating toggle
@@ -91,7 +77,6 @@ for_window [class="Cheese" instance="cheese"] floating enable
 for_window [class="R_x11" instance="r_x11"]   floating enable
 for_window [class="Toplevel"]                 floating enable
 for_window [class="Evince" instance="evince"] floating enable
-
 
 ### Workspaces
 # Rename workspace (do not really use workspace names)
@@ -114,27 +99,28 @@ bindcode Mod4+46 mode "WindowManagement"
 bindsym  Hangul  mode "WindowManagement"
 
 mode "WindowManagement" {
+    # Full Screen
+    bindsym Return fullscreen toggle; mode "default"
+    bindsym Tab kill; mode "default"
     # Focus
     bindcode   $right       focus right
     bindcode   $left        focus left 
     bindcode   $up          focus up
-    bindcode   $down        focus down
-
-    #bindsym    u            focus parent
-    #bindsym    y            focus child
+    bindcode   $down        focus down 
+    bindsym    q            focus parent
+    bindsym    a            focus child
     # Move
     bindcode Mod5+$right  move right
     bindcode Mod5+$left   move left 
     bindcode Mod5+$up     move up
     bindcode Mod5+$down   move down
     ## Layout
-    #bindsym s  layout stacking
-    #bindsym t  layout tabbed
-    #bindsym r  layout toggle split
+    bindsym l  layout stacking
+    bindsym u  layout tabbed
+    bindsym y  layout toggle split
     # Split
-    #bindsym f split h
-    #bindsym p split v
-
+    bindsym k split h
+    bindsym m split v
     # 3-pixel moves
     bindcode Shift+$right resize grow   width  3 px or 3 ppt
     bindcode Shift+$left  resize shrink width  3 px or 3 ppt
@@ -168,11 +154,9 @@ mode "WindowManagement" {
     bindcode Mod5+94 move container to workspace number 9
     bindcode Mod5+40 move container to workspace number 10
     # Exit back to default mode
-    bindsym Escape        mode "default"
-    bindsym Return        mode "default"
-    bindsym Tab           mode "default"
-    bindsym Hangul        mode "default"
-    bindsym space         mode "default"
+    bindsym Escape mode "default"
+    bindsym Hangul mode "default"
+    bindsym space  mode "default"
 }
 
 
@@ -228,7 +212,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 
 ### Scratchpad 
-
+# Note: don't immediately see a need for scratchpad, because using daemons instead
 # move the currently focused window to the scratchpad
 #bindsym $mod+Shift+minus move scratchpad
 
