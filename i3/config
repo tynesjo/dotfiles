@@ -149,6 +149,11 @@ mode "Navigation" {
     # Split
     bindsym f split h
     bindsym p split v
+    # 3-pixel moves
+    bindcode Shift+47  resize grow   width  3 px or 3 ppt
+    bindcode Shift+44  resize shrink width  3 px or 3 ppt
+    bindcode Shift+46  resize grow   height 3 px or 3 ppt
+    bindcode Shift+45  resize shrink height 3 px or 3 ppt
     # Exit back to default mode
     bindsym Escape        mode "default"
     bindsym Return        mode "default"
