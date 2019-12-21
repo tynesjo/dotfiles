@@ -123,10 +123,10 @@ workspace 10 output $external_display
 
 
 ### Modes
-bindcode Mod4+46 mode "i3"
-bindsym  Hangul  mode "i3"
+bindcode Mod4+46 mode "WindowManagement"
+bindsym  Hangul  mode "WindowManagement"
 
-mode "i3" {
+mode "WindowManagement" {
     # Focus
     bindcode   $right       focus right
     bindcode   $left        focus left 
