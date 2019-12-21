@@ -5,8 +5,8 @@ set $laptop_display     "DP-2"
 set $external_display   "HDMI-0"
 
 # Vim-style navigation keycodes:
-set $up    45
-set $down  46
+set $up    46
+set $down  45
 set $left  44
 set $right 47
 set $one   39 workspace number 1
@@ -33,22 +33,22 @@ set $alt Mod5
 hide_edge_borders both
 
 ### External Application Calls
-
-bindcode  $mod+55     exec chromium
-bindcode  $modb+55    exec urxvt
-bindsym   $mod+k      exec dmenu_run
-bindcode  $mod+60     exec emacs
-bindcode  49    exec ~/keyboard/change-keyboard-layout.sh
+bindcode  $mod+$right  exec chromium
+bindcode  $modb+$right exec firefox
+bindcode  $mod+$up     exec urxvt -cd "`xcwd`" --meta8
+bindcode  $modb+$up    exec urxvt
+bindcode  $mod+$left   exec dmenu_run
+bindcode  $mod+$down   exec e
+bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
 
 # Open new terminal window in current active directory
-bindsym Control+Shift+k exec urxvt -cd "`xcwd`" --meta8
 
 #### Focus Container/Output
-# containers
-bindcode $mod+$left   focus left
-bindcode $mod+$down   focus down
-bindcode $mod+$up     focus up
-bindcode $mod+$right  focus right
+## containers
+#bindcode $mod+$left   focus left
+#bindcode $mod+$down   focus down
+#bindcode $mod+$up     focus up
+#bindcode $mod+$right  focus right
 
 # output
 bindcode $mod+56 focus output down
