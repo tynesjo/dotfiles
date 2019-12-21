@@ -125,11 +125,10 @@ workspace 10 output $external_display
 
 
 ### Modes
-bindcode Mod4+46 mode "Navigation"
-bindsym  Hangul  mode "Navigation"
-bindsym  $mod+l  mode "Resize"
+bindcode Mod4+46 mode "i3"
+bindsym  Hangul  mode "i3"
 
-mode "Navigation" {
+mode "i3" {
     # Focus
     bindcode   $right       focus right
     bindcode   $left        focus left 
@@ -150,33 +149,21 @@ mode "Navigation" {
     bindsym f split h
     bindsym p split v
     # 3-pixel moves
-    bindcode Shift+47  resize grow   width  3 px or 3 ppt
-    bindcode Shift+44  resize shrink width  3 px or 3 ppt
-    bindcode Shift+46  resize grow   height 3 px or 3 ppt
-    bindcode Shift+45  resize shrink height 3 px or 3 ppt
+    bindcode Shift+$right resize grow   width  3 px or 3 ppt
+    bindcode Shift+$left  resize shrink width  3 px or 3 ppt
+    bindcode Shift+$up    resize grow   height 3 px or 3 ppt
+    bindcode Shift+$down  resize shrink height 3 px or 3 ppt
+    # 1-pixel moves
+    bindcode Mod4+$right resize grow   width  1 px or 1 ppt
+    bindcode Mod4+$left  resize shrink width  1 px or 1 ppt
+    bindcode Mod4+$up    resize grow   height 1 px or 1 ppt
+    bindcode Mod4+$down  resize shrink height 1 px or 1 ppt
     # Exit back to default mode
     bindsym Escape        mode "default"
     bindsym Return        mode "default"
     bindsym Tab           mode "default"
     bindsym Hangul        mode "default"
-}
-
-mode "Resize" {
-    # 3-pixel moves
-    bindcode 47  resize grow   width  3 px or 3 ppt
-    bindcode 44  resize shrink width  3 px or 3 ppt
-    bindcode 46  resize grow   height 3 px or 3 ppt
-    bindcode 45  resize shrink height 3 px or 3 ppt
-    # 1-pixel moves
-    bindcode Shift+47  resize grow   width  1 px or 1 ppt
-    bindcode Shift+44  resize shrink width  1 px or 1 ppt
-    bindcode Shift+46  resize grow   height 1 px or 1 ppt
-    bindcode Shift+45  resize shrink height 1 px or 1 ppt
-
-    # Exit back to default mode
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-    bindsym Tab    mode "default"
+    bindsym space         mode "default"
 }
 
 
