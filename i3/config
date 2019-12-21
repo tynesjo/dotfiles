@@ -59,14 +59,9 @@ bindcode $modb+$right move right
 ### Container Management 
 
 # split vertically or horizontally
-#bindcode 29 split h
-#bindcode 28 split v
 
 bindcode $modb+58 fullscreen toggle
 
-#bindsym $mod+Left  layout stacking
-#bindsym $mod+Down  layout tabbed
-#bindsym $mod+Right layout toggle split
 
 
 ### Floating Windows
@@ -131,7 +126,8 @@ workspace 10 output $external_display
 
 ### Modes
 bindcode Mod4+46 mode "Navigation"
-bindsym $mod+l mode "Resize"
+bindsym  Hangul  mode "Navigation"
+bindsym  $mod+l  mode "Resize"
 
 mode "Navigation" {
     # Focus
@@ -146,10 +142,18 @@ mode "Navigation" {
     bindcode Mod5+$left   move left 
     bindcode Mod5+$up     move up
     bindcode Mod5+$down   move down
+    # Layout
+    bindsym s  layout stacking
+    bindsym t  layout tabbed
+    bindsym r  layout toggle split
+    # Split
+    bindsym f split h
+    bindsym p split v
     # Exit back to default mode
     bindsym Escape        mode "default"
     bindsym Return        mode "default"
     bindsym Tab           mode "default"
+    bindsym Hangul        mode "default"
 }
 
 mode "Resize" {
