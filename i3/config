@@ -97,29 +97,6 @@ for_window [class="Evince" instance="evince"] floating enable
 # Rename workspace (do not really use workspace names)
 # bindsym $mod+u exec i3-input -F 'rename workspace to %s' -P 'New name: '
 
-# Switch to workspace:
-bindcode $mod+39 workspace number 1
-bindcode $mod+38 workspace number 2
-bindcode $mod+54 workspace number 3
-bindcode $mod+26 workspace number 4
-bindcode $mod+53 workspace number 5
-bindcode $mod+25 workspace number 6
-bindcode $mod+52 workspace number 7
-bindcode $mod+24 workspace number 8
-bindcode $mod+94 workspace number 9
-bindcode $mod+40 workspace number 10
-
-bindcode $modb+39 move container to workspace number 1
-bindcode $modb+38 move container to workspace number 2
-bindcode $modb+54 move container to workspace number 3
-bindcode $modb+26 move container to workspace number 4
-bindcode $modb+53 move container to workspace number 5
-bindcode $modb+25 move container to workspace number 6
-bindcode $modb+52 move container to workspace number 7
-bindcode $modb+24 move container to workspace number 8
-bindcode $modb+94 move container to workspace number 9
-bindcode $modb+40 move container to workspace number 10
-
 # Target workspaces to specific displays (odd to laptop and even to external)
 workspace 1  output $laptop_display
 workspace 2  output $external_display
@@ -131,7 +108,6 @@ workspace 7  output $laptop_display
 workspace 8  output $external_display
 workspace 9  output $laptop_display
 workspace 10 output $external_display
-
 
 ### Modes
 bindcode Mod4+46 mode "WindowManagement"
@@ -191,7 +167,6 @@ mode "WindowManagement" {
     bindcode Mod5+24 move container to workspace number 8
     bindcode Mod5+94 move container to workspace number 9
     bindcode Mod5+40 move container to workspace number 10
-
     # Exit back to default mode
     bindsym Escape        mode "default"
     bindsym Return        mode "default"
