@@ -14,7 +14,7 @@ set $right 47
 # is used in the bar {} block below.
 font pango:DejaVu Sans Mono 8
 
-# default modkkier
+# default modifier
 set $mod  Mod5+Shift
 # navigation layer
 set $modb Mod4+Mod5
@@ -24,7 +24,7 @@ hide_edge_borders both
 
 ### External Application Calls_________________________________________________
 
-bindcode  $mod+55     exec chromium
+bindcode4 $mod+55     exec chromium
 bindcode  $modb+55    exec urxvt
 bindsym   $mod+k      exec dmenu_run
 bindcode  $mod+61     kill
@@ -36,7 +36,7 @@ bindcode  49    exec ~/keyboard/change-keyboard-layout.sh
 bindsym Control+Shift+k exec urxvt -cd "`xcwd`" --meta8
 
 
-#### Focus Container / Output _________________________________________________
+#### Focus Container/Output
 
 # containers
 bindcode $mod+$left   focus left
@@ -48,9 +48,10 @@ bindsym  Next         focus child
 
 # output
 bindcode $mod+56 focus output down
+bindcode $mod+42 focus output right
 
 
-### Move Window _______________________________________________________________
+### Move Window
 
 # move focused window
 bindcode $modb+$left  move left
