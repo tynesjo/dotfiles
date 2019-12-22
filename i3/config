@@ -59,8 +59,8 @@ bindsym Greek_pi      kill
 #bindsym Greek_ETA fullscreen toggle
 
 ### External Application Calls
-bindcode  $mod+$right  exec chromium
-bindcode  $modb+$right exec firefox
+bindcode  $mod+$right  exec qutebrowser
+bindcode  $modb+$right exec chromium
 bindcode  $mod+$up     exec urxvt -cd "`xcwd`" --meta8
 bindcode  $modb+$up    exec urxvt
 bindcode  $mod+$left   exec dmenu_run
