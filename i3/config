@@ -32,6 +32,27 @@ set $alt Mod5
 
 hide_edge_borders both
 
+### Trackpad Bindings
+# Move Container
+bindsym Greek_alpha   move left 
+bindsym Greek_beta    move down
+bindsym Greek_gamma   move up
+bindsym Greek_delta   move right
+# Focus Container
+bindsym Greek_epsilon focus left 
+bindsym Greek_zeta    focus down
+bindsym Greek_eta     focus up
+bindsym Greek_theta   focus right
+# Toggle Output
+bindsym Greek_iota    focus output left
+bindsym Greek_kappa   focus output down
+bindsym Greek_lambda  focus output up
+bindsym Greek_mu      focus output right
+
+
+# Toggle Full-Screen (for Trackpad)
+#bindsym Greek_ETA fullscreen toggle
+
 ### External Application Calls
 bindcode  $mod+$right  exec chromium
 bindcode  $modb+$right exec firefox
@@ -41,19 +62,6 @@ bindcode  $mod+$left   exec dmenu_run
 bindcode  $mod+$down   exec e
 # (Open new terminal window in current active directory)
 bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
-
-### Focus Container (Trackpad Use)
-bindsym Greek_ALPHA focus right
-bindsym Greek_BETA  focus left 
-bindsym Greek_GAMMA focus up
-bindsym Greek_DELTA focus down
-
-### Move Container (Trackpad Use)
-bindsym Greek_alpha move right
-bindsym Greek_beta  move left 
-bindsym Greek_gamma move up
-bindsym Greek_delta move down
-
 ### Floating Windows
 # use Mouse+mod to drag floating windows to their wanted position
 floating_modifier $mod
