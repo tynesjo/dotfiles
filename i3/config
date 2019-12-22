@@ -56,11 +56,12 @@ bindcode $mod+42 focus output right
 
 ### Move Window
 
-# move focused window
-bindcode $modb+$left  move left
-bindcode $modb+$down  move down
-bindcode $modb+$up    move up
-bindcode $modb+$right move right
+## move focused window
+#bindcode $modb+$left  move left
+#bindcode $modb+$down  move down
+#bindcode $modb+$up    move up
+#bindcode $modb+$right move right
+
 
 ### Floating Windows
 # use Mouse+mod to drag floating windows to their wanted position
