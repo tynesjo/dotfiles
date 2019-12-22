@@ -190,9 +190,7 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
-
 ### Custom Control Key-Bindings 
-
 # audio volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
@@ -202,12 +200,4 @@ bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86MonBrightnessUp   exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
-
-### Scratchpad 
-# Note: don't immediately see a need for scratchpad, because using daemons instead
-# move the currently focused window to the scratchpad
-#bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-#bindsym $mod+minus scratchpad show
+### Scratchpad (not used)
