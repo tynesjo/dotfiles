@@ -50,10 +50,6 @@ bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
 #bindcode $mod+$up     focus up
 #bindcode $mod+$right  focus right
 
-# output
-bindcode $mod+56 focus output down
-bindcode $mod+42 focus output right
-
 ### Move Window
 
 ## move focused window
@@ -62,16 +58,9 @@ bindcode $mod+42 focus output right
 #bindcode $modb+$up    move up
 #bindcode $modb+$right move right
 
-
 ### Floating Windows
 # use Mouse+mod to drag floating windows to their wanted position
 floating_modifier $mod
-
-# toggle tiling / floating
-#bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-#bindsym $mod+Mod2+space focus mode_toggle
 
 # Set floating windows:
 for_window [class="Cheese" instance="cheese"] floating enable
@@ -80,9 +69,6 @@ for_window [class="Toplevel"]                 floating enable
 for_window [class="Evince" instance="evince"] floating enable
 
 ### Workspaces
-# Rename workspace (do not really use workspace names)
-# bindsym $mod+u exec i3-input -F 'rename workspace to %s' -P 'New name: '
-
 # Target workspaces to specific displays (odd to laptop and even to external)
 workspace 1  output $laptop_display
 workspace 2  output $external_display
@@ -100,6 +86,12 @@ bindcode Mod4+46 mode "WindowManagement"
 bindsym  Hangul  mode "WindowManagement"
 
 mode "WindowManagement" {
+    # Toggle output
+    bindsym space focus output down; focus output right; mode "default"
+    bindsym Return fullscreen toggle; mode "default"
+    # Floating
+    bindsym comma  floating toggle; mode "default"
+    bindsym period focus mode_toggle; mode "default"
     # Full Screen
     bindsym Return fullscreen toggle; mode "default"
     bindsym Tab kill; mode "default"
@@ -157,7 +149,6 @@ mode "WindowManagement" {
     # Exit back to default mode
     bindsym Escape mode "default"
     bindsym Hangul mode "default"
-    bindsym space  mode "default"
 }
 
 
