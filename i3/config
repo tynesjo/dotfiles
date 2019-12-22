@@ -39,30 +39,26 @@ bindcode  $mod+$up     exec urxvt -cd "`xcwd`" --meta8
 bindcode  $modb+$up    exec urxvt
 bindcode  $mod+$left   exec dmenu_run
 bindcode  $mod+$down   exec e
+# (Open new terminal window in current active directory)
 bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
 
-# Open new terminal window in current active directory
+### Focus Container (Trackpad Use)
+bindsym Greek_ALPHA focus right
+bindsym Greek_BETA  focus left 
+bindsym Greek_GAMMA focus up
+bindsym Greek_DELTA focus down
 
-#### Focus Container/Output
-## containers
-#bindcode $mod+$left   focus left
-#bindcode $mod+$down   focus down
-#bindcode $mod+$up     focus up
-#bindcode $mod+$right  focus right
-
-### Move Window
-
-## move focused window
-#bindcode $modb+$left  move left
-#bindcode $modb+$down  move down
-#bindcode $modb+$up    move up
-#bindcode $modb+$right move right
+### Move Container (Trackpad Use)
+bindsym Greek_alpha move right
+bindsym Greek_beta  move left 
+bindsym Greek_gamma move up
+bindsym Greek_delta move down
 
 ### Floating Windows
 # use Mouse+mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# Set floating windows:
+# Set floating windows
 for_window [class="Cheese" instance="cheese"] floating enable
 for_window [class="R_x11" instance="r_x11"]   floating enable
 for_window [class="Toplevel"]                 floating enable
@@ -86,31 +82,31 @@ bindcode Mod4+46 mode "WindowManagement"
 bindsym  Hangul  mode "WindowManagement"
 
 mode "WindowManagement" {
-    # Toggle output
-    bindsym space focus output down; focus output right; mode "default"
-    bindsym Return fullscreen toggle; mode "default"
+    # Toggle Output
+    bindsym Return focus output down; focus output right; mode "default"
+    # Toggle Full-Screen
+    bindsym space fullscreen toggle; mode "default"
     # Floating
     bindsym comma  floating toggle; mode "default"
     bindsym period focus mode_toggle; mode "default"
-    # Full Screen
-    bindsym Return fullscreen toggle; mode "default"
+    # Kill
     bindsym Tab kill; mode "default"
     # Focus
-    bindcode   $right       focus right
-    bindcode   $left        focus left 
-    bindcode   $up          focus up
-    bindcode   $down        focus down 
-    bindsym    q            focus parent
-    bindsym    a            focus child
+    bindcode   $right       focus right;  mode "default"
+    bindcode   $left        focus left ;  mode "default"
+    bindcode   $up          focus up;     mode "default"
+    bindcode   $down        focus down;   mode "default"
+    bindsym    q            focus parent; mode "default"
+    bindsym    a            focus child;  mode "default"
     # Move
-    bindcode Mod5+$right  move right
-    bindcode Mod5+$left   move left 
-    bindcode Mod5+$up     move up
-    bindcode Mod5+$down   move down
+    bindcode Mod5+$right  move right; mode "default"
+    bindcode Mod5+$left   move left ; mode "default"
+    bindcode Mod5+$up     move up;    mode "default"
+    bindcode Mod5+$down   move down;  mode "default"
     ## Layout
-    bindsym l  layout stacking
-    bindsym u  layout tabbed
-    bindsym y  layout toggle split
+    bindsym l  layout stacking;     mode "default"
+    bindsym u  layout tabbed;       mode "default"
+    bindsym y  layout toggle split; mode "default"
     # Split
     bindsym k split h
     bindsym m split v
