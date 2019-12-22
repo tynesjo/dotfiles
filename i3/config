@@ -48,7 +48,12 @@ bindsym Greek_iota    focus output left
 bindsym Greek_kappa   focus output down
 bindsym Greek_lambda  focus output up
 bindsym Greek_mu      focus output right
-
+# Toggle Full-Screen
+bindsym Greek_nu      fullscreen toggle
+bindsym Greek_xi      fullscreen toggle
+# Kill Container
+bindsym Greek_omicron kill
+bindsym Greek_pi      kill
 
 # Toggle Full-Screen (for Trackpad)
 #bindsym Greek_ETA fullscreen toggle
