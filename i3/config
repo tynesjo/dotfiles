@@ -125,27 +125,27 @@ mode "WindowManagement" {
     bindcode Mod4+$up    resize grow   height 1 px or 1 ppt
     bindcode Mod4+$down  resize shrink height 1 px or 1 ppt
     # Switch to workspace:
-    bindcode $one   workspace number 1
-    bindcode $two   workspace number 2
-    bindcode $three workspace number 3
-    bindcode $four  workspace number 4
-    bindcode $five  workspace number 5
-    bindcode $six   workspace number 6
-    bindcode $seven workspace number 7
-    bindcode $eight workspace number 8
-    bindcode $nine  workspace number 9
-    bindcode $zero  workspace number 10
+    bindcode 39 workspace number 1; mode "default"
+    bindcode 38 workspace number 2; mode "default"
+    bindcode 54 workspace number 3; mode "default"
+    bindcode 26 workspace number 4; mode "default"
+    bindcode 53 workspace number 5; mode "default"
+    bindcode 25 workspace number 6; mode "default"
+    bindcode 52 workspace number 7; mode "default"
+    bindcode 24 workspace number 8; mode "default"
+    bindcode 94 workspace number 9; mode "default"
+    bindcode 40 workspace number 10; mode "default"
     # Move container to workspace: 
-    bindcode Mod5+39 move container to workspace number 1
-    bindcode Mod5+38 move container to workspace number 2
-    bindcode Mod5+54 move container to workspace number 3
-    bindcode Mod5+26 move container to workspace number 4
-    bindcode Mod5+53 move container to workspace number 5
-    bindcode Mod5+25 move container to workspace number 6
-    bindcode Mod5+52 move container to workspace number 7
-    bindcode Mod5+24 move container to workspace number 8
-    bindcode Mod5+94 move container to workspace number 9
-    bindcode Mod5+40 move container to workspace number 10
+    bindcode Mod5+39 move container to workspace number 1; mode "default"
+    bindcode Mod5+38 move container to workspace number 2; mode "default"
+    bindcode Mod5+54 move container to workspace number 3; mode "default"
+    bindcode Mod5+26 move container to workspace number 4; mode "default"
+    bindcode Mod5+53 move container to workspace number 5; mode "default"
+    bindcode Mod5+25 move container to workspace number 6; mode "default"
+    bindcode Mod5+52 move container to workspace number 7; mode "default"
+    bindcode Mod5+24 move container to workspace number 8; mode "default"
+    bindcode Mod5+94 move container to workspace number 9; mode "default"
+    bindcode Mod5+40 move container to workspace number 10; mode "default"
     # Exit back to default mode
     bindsym Escape mode "default"
     bindsym Hangul mode "default"
