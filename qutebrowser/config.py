@@ -27,5 +27,5 @@ config.bind(
 config.bind('p,', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
 config.bind('Pw', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
 
-# Hints
-c.hints.chars = 'tnseridhao'
+# Hints (Colemak-easy characters only)
+c.hints.chars = 'tnseridhaosukv'
