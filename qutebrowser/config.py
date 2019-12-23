@@ -10,3 +10,15 @@ def nmap(key, command):
 # Zooming
 nmap('<Ctrl-e>', 'zoom-in')
 nmap('<Ctrl-n>', 'zoom-out')
+
+# Style Sheets
+c.content.user_stylesheets = [
+    '~/qutebrowser/qutebrowser_dark_solarized/solarized-dark.css',
+    '~/qutebrowser/qutebrowser_dark_solarized/custom_solarized.css'
+]
+
+#config.bind('<Ctrl-R>', 'config-cycle content.user_stylesheets ~/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""')
+
+# Pass
+config.bind('p,', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
+config.bind(',P', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
