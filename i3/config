@@ -45,8 +45,8 @@ bindsym Greek_eta     focus up
 bindsym Greek_theta   focus right
 # Toggle Output
 bindsym Greek_iota    focus output left
-bindsym Greek_kappa   focus output down
-bindsym Greek_lambda  focus output up
+bindsym Greek_kappa   focus output left
+bindsym Greek_lambda  focus output right
 bindsym Greek_mu      focus output right
 # Toggle Full-Screen
 bindsym Greek_nu      fullscreen toggle
