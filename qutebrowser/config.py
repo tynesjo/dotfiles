@@ -26,3 +26,6 @@ config.bind(
 # Pass
 config.bind('p,', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
 config.bind('Pw', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
+
+# Hints
+c.hints.chars = 'tnseridhao'
