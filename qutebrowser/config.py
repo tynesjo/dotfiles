@@ -7,6 +7,11 @@ def nmap(key, command):
     """Bind key to command in normal mode."""
     bind(key, command, 'normal')
 
+def imap(key, command):
+    """Bind key to command in insert mode."""
+    bind(key, command, 'insert')
+
+
 # Zooming
 nmap('<Ctrl-e>', 'zoom-in')
 nmap('<Ctrl-n>', 'zoom-out')
@@ -28,4 +33,10 @@ config.bind('p,', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
 config.bind('Pw', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
 
 # Hints (Colemak-easy characters only)
-c.hints.chars = 'tnseridhaosukv'
+c.hints.chars = 'tnseridhao'
+c.hints.auto_follow = 'always'
+
+# Editor
+c.editor.command = ['urxvt', '-e', 'env', 'TERM=xterm-256color', 'emacsclient', '-nw', '-s', 'instance1', '{}']
+nmap('gF', 'view-source --edit')
+imap('<Ctrl-i>', 'open-editor')
