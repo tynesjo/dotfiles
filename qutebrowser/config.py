@@ -25,4 +25,4 @@ config.bind(
 
 # Pass
 config.bind('p,', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
-config.bind(',P', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
+config.bind('Pw', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
