@@ -103,9 +103,11 @@ nmap('ti', 'inspector')
 # Search Keywords
 c.url.searchengines = \
     {'DEFAULT': 'https://www.google.com/search?lr=lang_en&q={}',
+     'go': 'https://www.google.com/search?lr=lang_en&q={}',
      'd': 'https://duckduckgo.com/?q={}',
      'w': 'http://en.wikipedia.org/w/index.php?search={}',
      'y': 'http://www.youtube.com/results?search_query={}',
+     'gh': 'http://github.com/search?q={}',
     }
 
 
@@ -135,3 +137,7 @@ nmap('H', 'forward')
 # lose scroll right
 nmap('l', 'tab-focus last')
 nmap('b', 'set-cmd-text --space :buffer')
+
+nunmap('i')
+
+nmap('\'', 'enter-mode insert' )
