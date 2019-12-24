@@ -105,4 +105,33 @@ c.url.searchengines = \
     {'DEFAULT': 'https://www.google.com/search?lr=lang_en&q={}',
      'd': 'https://duckduckgo.com/?q={}',
      'w': 'http://en.wikipedia.org/w/index.php?search={}',
+     'y': 'http://www.youtube.com/results?search_query={}',
     }
+
+
+# Colemak
+
+tmap('h', 'move-to-next-line')
+tmap('n', 'move-to-next-line')
+tmap('e', 'move-to-prev-line')
+tmap('i', 'move-to-next-char')
+
+nmap('n', 'scroll-page 0 0.2')
+nmap('e', 'scroll-page 0 -0.2')
+nmap('N', 'tab-prev')
+nmap('E', 'tab-next')
+
+# Passthrough mode (all keys go to website)
+nmap(',', 'enter-mode passthrough')
+pmap('<Escape>', 'leave-mode')
+
+# open new private window
+nmap('tp', 'open -p')
+
+# lose scroll left
+nmap('h', 'back')
+nmap('H', 'forward')
+
+# lose scroll right
+nmap('l', 'tab-focus last')
+nmap('b', 'set-cmd-text --space :buffer')
