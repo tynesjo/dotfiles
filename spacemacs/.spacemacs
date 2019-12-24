@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     (keyboard-layout :variables kl-layout 'colemak-hnei)
      themes-megapack
      dash
      autothemer
@@ -318,13 +319,12 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (mapc 'load (file-expand-wildcards `"~/.emacs.d/elpa/dash-*/dash.el"))`
-  (mapc 'load (file-expand-wildcards "~/.emacs.d/elpa/autothemer-*/autothemer.el"))
-  )
+  (mapc 'load (file-expand-wildcards "~/.emacs.d/elpa/autothemer-*/autothemer.el")))
 
 (defun dotspacemacs/user-config ()
   (spacemacs/load-theme 'gruvbox-dark-hard)
   (setq linum-format "%d ")
-  (evil-define-key 'normal global-map (kbd "i") (kbd "l"))
+;;  (evil-define-key 'normal global-map (kbd "i") (kbd "l"))
   (setq fill-column 88)
   (setq fci-rule-width 1)
   (setq fci-rule-column 88)
@@ -333,8 +333,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 ;;  (toggle-crosshairs-when-idle 5)
   (xclip-mode 1)
  
-  (evil-define-key 'normal global-map (kbd "n") (kbd "j"))
-  (evil-define-key 'normal global-map (kbd "e") (kbd "k"))
+ ;; (evil-define-key 'normal global-map (kbd "l") (kbd "n"))
+ ;; (evil-define-key 'normal global-map (kbd "n") (kbd "j"))
+ ;; (evil-define-key 'normal global-map (kbd "e") (kbd "k"))
   ;;(evil-define-key 'normal global-map (kbd "'") (kbd "i"))
 
 ;;  (define-key key-translation-map (kbd "n") (kbd "j"))
