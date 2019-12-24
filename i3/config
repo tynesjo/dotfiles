@@ -97,13 +97,14 @@ bindsym  Hangul  mode "WindowManagement"
 mode "WindowManagement" {
     # Toggle Output
     bindsym Return focus output down; focus output right; mode "default"
+    bindsym Tab focus output down; focus output right; mode "default"
     # Toggle Full-Screen
     bindsym space fullscreen toggle; mode "default"
     # Floating
     bindsym comma  floating toggle; mode "default"
     bindsym period focus mode_toggle; mode "default"
     # Kill
-    bindsym Tab kill; mode "default"
+    bindsym Hangul kill; mode "default"
     # Focus
     bindcode   $right       focus right;  mode "default"
     bindcode   $left        focus left ;  mode "default"
@@ -157,7 +158,6 @@ mode "WindowManagement" {
     bindcode Mod5+40 move container to workspace number 10; mode "default"
     # Exit back to default mode
     bindsym Escape mode "default"
-    bindsym Hangul mode "default"
 }
 
 

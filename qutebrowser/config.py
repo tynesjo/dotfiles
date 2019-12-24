@@ -35,6 +35,7 @@ def nunmap(key):
 # Zooming
 nmap('<Ctrl-e>', 'zoom-in')
 nmap('<Ctrl-n>', 'zoom-out')
+c.zoom.default=120
 
 # Style Sheets
 c.content.user_stylesheets = [
@@ -66,3 +67,6 @@ nmap('l', 'search-next')
 nmap('L', 'search-prev')
 
 c.scrolling.bar = 'never'
+
+# Media
+c.content.autoplay = False
