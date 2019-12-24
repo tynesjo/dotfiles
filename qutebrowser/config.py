@@ -31,6 +31,22 @@ def nunmap(key):
     """Unbind key in normal mode."""
     unmap(key, mode='normal')
 
+# Settings
+# ** Session
+# always restore opened sites when opening qutebrowser
+c.auto_save.session = True
+c.session.lazy_restore = True
+
+# Tabs
+# open new tabs (middleclick/ctrl+click) in the background
+c.tabs.background = True
+# select previous tab instead of next tab when deleting current tab
+c.tabs.select_on_remove = 'prev'
+# open unrelated tabs after the current tab not last
+c.tabs.new_position.unrelated = 'next'
+c.tabs.min_width = 200
+c.tabs.title.format = '{index}{private}{title_sep}{current_title}'
+
 
 # Zooming
 nmap('<Ctrl-e>', 'zoom-in')
@@ -70,3 +86,23 @@ c.scrolling.bar = 'never'
 
 # Media
 c.content.autoplay = False
+
+# Hints
+c.colors.hints.bg = \
+    'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 247, 133, 1), ' \
+    + 'stop:1 rgba(255, 197, 66, 1))'
+
+nmap('t.', 'config-source')
+nmap('ti', 'inspector')
+
+# Downloads
+#c.downloads.location.directory = '~/move'
+#c.downloads.location.prompt = False
+#c.downloads.open_dispatcher = 'dl_move {}'
+
+# Search Keywords
+c.url.searchengines = \
+    {'DEFAULT': 'https://www.google.com/search?lr=lang_en&q={}',
+     'd': 'https://duckduckgo.com/?q={}',
+     'w': 'http://en.wikipedia.org/w/index.php?search={}',
+    }
