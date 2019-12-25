@@ -323,6 +323,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (mapc 'load (file-expand-wildcards "~/.emacs.d/elpa/autothemer-*/autothemer.el")))
 
 (defun dotspacemacs/user-config ()
+  (setq x-super-keysym 'Cyrillic_zhe)
+  (setq x-hyper-keysym 'Cyrillic_sha)
+  (setq global-unset-key 'Hyper_L)
+  (setq global-unset-key 'Meta_R)
   (spacemacs/load-theme 'gruvbox-dark-hard)
   (setq linum-format "%d ")
 ;;  (evil-define-key 'normal global-map (kbd "i") (kbd "l"))
