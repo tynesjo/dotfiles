@@ -1,4 +1,4 @@
-exec feh --randomize --bg-fill /home/j/Pictures/wallpapers/
+exec libinput-gestures-setup start
 ### Arguments / Parameters 
 
 # Display codes (computer screens):
