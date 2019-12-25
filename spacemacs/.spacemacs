@@ -38,6 +38,7 @@ values."
      csv
      python
      sql
+     ess
      vimscript
      markdown
      ;; ----------------------------------------------------------------
