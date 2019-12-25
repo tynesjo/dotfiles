@@ -30,7 +30,7 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
      (keyboard-layout :variables kl-layout 'colemak-hnei)
      themes-megapack
      dash

@@ -55,14 +55,13 @@ c.zoom.default=120
 
 # Style Sheets
 c.content.user_stylesheets = [
-    '~/qutebrowser/qutebrowser_dark_solarized/solarized-dark.css',
-    '~/qutebrowser/qutebrowser_dark_solarized/custom_solarized.css'
+    '~/qutebrowser/custom-solarized/custom-mono.css'
 ]
 
 # Cycle Through Style Sheets
 config.bind(
     '<Ctrl-s>',
-    'config-cycle content.user_stylesheets ~/qutebrowser/qutebrowser_dark_solarized/custom_solarized.css ""'
+    'config-cycle content.user_stylesheets ~/qutebrowser/custom-solarized/custom-mono.css ~/qutebrowser/custom-solarized/custom-solarized.css ""'
 )
 
 # Pass
