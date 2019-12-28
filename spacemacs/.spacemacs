@@ -34,7 +34,7 @@ values."
      (keyboard-layout :variables kl-layout 'colemak-hnei)
      themes-megapack
      dash
-     autothemer
+     ;;autothemer
      csv
      python
      sql
@@ -52,7 +52,7 @@ values."
      emacs-lisp
      ;; git
      ;; markdown
-     org
+     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -153,7 +153,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("DejaVu Sans Mono"
+   dotspacemacs-default-font '("Source Code Pro"
                                :size 13
                                :weight normal
                                :width normal
@@ -271,15 +271,13 @@ values."
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
    ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
    ;; This variable can also be set to a property list for finer control:
-   dotspacemacs-line-numbers t
-    '(:relative nil
-      :enabled-for-modes text-mode
+   dotspacemacs-line-numbers '(:relative f
+                               :enabled-for-modes text-mode
       :disabled-for-modes dired-mode
                           doc-view-mode
                           markdown-mode
                           org-mode
                           pdf-view-mode
-   ;;                       text-mode
       :size-limit-kb 1000)
    ;; (default nil)
    ;; Code folding method. Possible values are `evil' and `origami'.
@@ -339,18 +337,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 ;;  (setq fci-rule-color "silver")
   (fci-mode t)
   (xclip-mode 1)
- 
  ;; (evil-define-key 'normal global-map (kbd "l") (kbd "n"))
- ;; (evil-define-key 'normal global-map (kbd "n") (kbd "j"))
- ;; (evil-define-key 'normal global-map (kbd "e") (kbd "k"))
-  ;;(evil-define-key 'normal global-map (kbd "'") (kbd "i"))
 
-;;  (define-key key-translation-map (kbd "n") (kbd "j"))
-;;   (define-key key-translation-map (kbd "e") (kbd "k"))
-;;  (define-key key-translation-map (kbd "k") (kbd "e"))
-;;  (define-key key-translation-map (kbd "'") (kbd "i"))
-;;  (define-key key-translation-map (kbd "'") (kbd "i"))
-  
 
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
