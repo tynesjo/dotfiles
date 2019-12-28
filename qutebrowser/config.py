@@ -68,6 +68,7 @@ config.bind(
 config.bind('p,', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
 config.bind('Pw', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
 
+
 # Hints (Colemak-easy characters only)
 c.hints.chars = 'tnseridhao'
 c.hints.auto_follow = 'always'
@@ -140,3 +141,8 @@ nmap('b', 'set-cmd-text --space :buffer')
 nunmap('i')
 
 nmap('\'', 'enter-mode insert' )
+
+# Google Accounts
+
+config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/77.0', 'https://accounts.google.com/*')
+

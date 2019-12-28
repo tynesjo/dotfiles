@@ -1,3 +1,4 @@
+exec picom
 exec libinput-gestures-setup start
 ### Arguments / Parameters 
 
@@ -60,13 +61,13 @@ bindsym Greek_pi      kill
 #bindsym Greek_ETA fullscreen toggle
 
 ### External Application Calls
-bindcode  $mod+$right  exec e
-bindcode  $modb+$right exec e
-bindcode  $mod+$up     exec urxvt -cd "`xcwd`" --meta8
-bindcode  $modb+$up    exec urxvt
-bindcode  $mod+$left   exec dmenu_run
-bindcode  $mod+$down   exec qutebrowser
-bindcode  $modb+$down  exec chromium
+bindcode  $mod + $right exec emacsclient -nc -s instance1
+bindcode  $modb+$right  exec emacsclient -nc -s instance1
+bindcode  $mod +$up     exec urxvt -cd "`xcwd`" --meta8
+bindcode  $modb+$up     exec urxvt
+bindcode  $mod +$left   exec dmenu_run
+bindcode  $mod +$down   exec qutebrowser
+bindcode  $modb+$down   exec chromium
 # (Open new terminal window in current active directory)
 bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
 

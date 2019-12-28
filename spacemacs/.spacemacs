@@ -52,7 +52,7 @@ values."
      emacs-lisp
      ;; git
      ;; markdown
-     ;; org
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -153,7 +153,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("DejaVu Sans Mono"
                                :size 13
                                :weight normal
                                :width normal
@@ -271,16 +271,17 @@ values."
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
    ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
    ;; This variable can also be set to a property list for finer control:
-   ;; '(:relative nil
-   ;;   :disabled-for-modes dired-mode
-   ;;                       doc-view-mode
-   ;;                       markdown-mode
-   ;;                       org-mode
-   ;;                       pdf-view-mode
-   ;;                       text-mode
-   ;;   :size-limit-kb 1000)
-   ;; (default nil)
    dotspacemacs-line-numbers t
+    '(:relative nil
+      :enabled-for-modes text-mode
+      :disabled-for-modes dired-mode
+                          doc-view-mode
+                          markdown-mode
+                          org-mode
+                          pdf-view-mode
+   ;;                       text-mode
+      :size-limit-kb 1000)
+   ;; (default nil)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -323,10 +324,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (mapc 'load (file-expand-wildcards "~/.emacs.d/elpa/autothemer-*/autothemer.el")))
 
 (defun dotspacemacs/user-config ()
+  (define-key evil-normal-state-map (kbd "'") 'evil-insert-state)
+  (spacemacs/toggle-line-numbers-on)
   (setq x-super-keysym 'Cyrillic_zhe)
   (setq x-hyper-keysym 'Cyrillic_sha)
-  (setq global-unset-key 'Hyper_L)
-  (setq global-unset-key 'Meta_R)
+  (setq global-unset-key 'Super)
+  (setq global-unset-key 'Hyper)
   (spacemacs/load-theme 'gruvbox-dark-hard)
   (setq linum-format "%d ")
 ;;  (evil-define-key 'normal global-map (kbd "i") (kbd "l"))
@@ -335,7 +338,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq fci-rule-column 88)
 ;;  (setq fci-rule-color "silver")
   (fci-mode t)
-;;  (toggle-crosshairs-when-idle 5)
   (xclip-mode 1)
  
  ;; (evil-define-key 'normal global-map (kbd "l") (kbd "n"))
@@ -350,50 +352,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 ;;  (define-key key-translation-map (kbd "'") (kbd "i"))
   
 
-  (define-key evil-ex-completion-map (kbd "H-t") "0")
-  (define-key evil-ex-completion-map (kbd "H-s") "1")
-  (define-key evil-ex-completion-map (kbd "H-r") "2")
-  (define-key evil-ex-completion-map (kbd "H-v") "3")
-  (define-key evil-ex-completion-map (kbd "H-p") "4")
-  (define-key evil-ex-completion-map (kbd "H-c") "5")
-  (define-key evil-ex-completion-map (kbd "H-f") "6")
-  (define-key evil-ex-completion-map (kbd "H-x") "7")
-  (define-key evil-ex-completion-map (kbd "H-w") "8")
-  (define-key evil-ex-completion-map (kbd "H-z") "9")
-
-  (define-key evil-normal-state-map (kbd "'") 'evil-insert-state)
-  ;; Hyper-layer mappings
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-t") (kbd "0"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-s") (kbd "1"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-r") (kbd "2"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-v") (kbd "3"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-p") (kbd "4"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-c") (kbd "5"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-f") (kbd "6"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-x") (kbd "7"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-w") (kbd "8"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-z") (kbd "9"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-q") (kbd "^"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-g") (kbd "^"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-j") (kbd "#"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-u") (kbd "="))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-y") (kbd "$"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-:") (kbd "&"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-d") (kbd "%"))
-
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-d") (kbd "%"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-n") (kbd "-"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-e") (kbd "+"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-i") (kbd "/"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-o") (kbd "*"))
-
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-k") (kbd "\""))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-m") (kbd "+"))
-  (evil-define-key '(normal insert visual motion emacs replace hybrid evilified lisp iedit iedit-insert) global-map (kbd "H-`") (kbd "~"))
-  
-  
-  
-  
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
