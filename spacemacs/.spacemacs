@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(html
+     org
      (keyboard-layout :variables kl-layout 'colemak-hnei)
      themes-megapack
      dash
@@ -52,7 +53,6 @@ values."
      emacs-lisp
      ;; git
      ;; markdown
-     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -95,6 +95,7 @@ values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+   dotspacemacs-mode-line-theme 'spacemacs
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -271,14 +272,19 @@ values."
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
    ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
    ;; This variable can also be set to a property list for finer control:
-   dotspacemacs-line-numbers '(:relative f
-                               :enabled-for-modes text-mode
-      :disabled-for-modes dired-mode
-                          doc-view-mode
-                          markdown-mode
-                          org-mode
-                          pdf-view-mode
-      :size-limit-kb 1000)
+   dotspacemacs-line-numbers '(
+;;     :relative t
+     :enabled-for-modes
+       org-mode
+  ;;     text-mode
+  ;;     prog-mode
+     :disabled-for-modes
+       dired-mode
+       doc-view-mode
+       markdown-mode
+       pdf-view-mode
+       :size-limit-kb 1000
+   )
    ;; (default nil)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -319,26 +325,36 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (mapc 'load (file-expand-wildcards `"~/.emacs.d/elpa/dash-*/dash.el"))`
-  (mapc 'load (file-expand-wildcards "~/.emacs.d/elpa/autothemer-*/autothemer.el")))
+  (mapc 'load (file-expand-wildcards "~/.emacs.d/elpa/autothemer-*/autothemer.el"))
+;;  (spacemacs/toggle-line-numbers-on)
+)
 
 (defun dotspacemacs/user-config ()
   (define-key evil-normal-state-map (kbd "'") 'evil-insert-state)
-  (spacemacs/toggle-line-numbers-on)
-  (setq x-super-keysym 'Cyrillic_zhe)
-  (setq x-hyper-keysym 'Cyrillic_sha)
-  (setq global-unset-key 'Super)
-  (setq global-unset-key 'Hyper)
+  (evil-define-key evil-org-mode-map
+    ;; don't need any more because bindings to arrow keys from splitRest work
+;;    kbd("M-h")   'org-do-promote
+;;    kbd("M-i")   'org-do-demote
+;;    kbd("M-S-h") 'org-promote-subtree
+;;    kbd("M-S-i") 'org-demote-subtree
+;;    kbd("M-u") 'org-move-subtree-up
+;;    kbd("M-n") 'org-move-subtree-down
+;;       kbd("SPC o e") 'org-move-subtree-up
+;;       kbd("SPC o m") 'org-move-subtree-down
+;;       kbd("SPC o j") 'org-promote-subtree
+;;       kbd("SPC o k") 'org-demote-subtree
+       )
+
   (spacemacs/load-theme 'gruvbox-dark-hard)
   (setq linum-format "%d ")
 ;;  (evil-define-key 'normal global-map (kbd "i") (kbd "l"))
+;; (evil-define-key 'normal global-map (kbd "l") (kbd "n"))
   (setq fill-column 88)
   (setq fci-rule-width 1)
   (setq fci-rule-column 88)
 ;;  (setq fci-rule-color "silver")
   (fci-mode t)
   (xclip-mode 1)
- ;; (evil-define-key 'normal global-map (kbd "l") (kbd "n"))
-
 
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -364,6 +380,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  )
 )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -409,3 +426,54 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-quickhelp-color-background "#4F4F4F")
+ '(company-quickhelp-color-foreground "#DCDCCC")
+ '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-color "#383838" t)
+ '(nrepl-message-colors
+   (quote
+    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(package-selected-packages
+   (quote
+    (org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain helm-org-rifle helm-org gnuplot evil-org darktooth-theme zeal-at-point helm-dash dash-docs jellybeans-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme solarized-theme-theme solarized-theme csv-mode crosshairs col-highlight vline hl-line+ mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+ '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+ '(standard-indent 2)
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil)))))
+)
