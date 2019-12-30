@@ -31,8 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(html
-     org
      (keyboard-layout :variables kl-layout 'colemak-hnei)
+     org
      themes-megapack
      dash
      ;;autothemer
@@ -154,9 +154,9 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
-                               :weight normal
+   dotspacemacs-default-font '("DejaVu Sans Mono"
+                               :size 15
+                               :weight regular
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
@@ -331,19 +331,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   (define-key evil-normal-state-map (kbd "'") 'evil-insert-state)
-  (evil-define-key evil-org-mode-map
-    ;; don't need any more because bindings to arrow keys from splitRest work
-;;    kbd("M-h")   'org-do-promote
-;;    kbd("M-i")   'org-do-demote
-;;    kbd("M-S-h") 'org-promote-subtree
-;;    kbd("M-S-i") 'org-demote-subtree
-;;    kbd("M-u") 'org-move-subtree-up
-;;    kbd("M-n") 'org-move-subtree-down
-;;       kbd("SPC o e") 'org-move-subtree-up
-;;       kbd("SPC o m") 'org-move-subtree-down
-;;       kbd("SPC o j") 'org-promote-subtree
-;;       kbd("SPC o k") 'org-demote-subtree
-       )
+  ;; Org-Mode Custom Key-Bindings:
+  (with-eval-after-load 'evil-org
+    (define-key evil-org-mode-map (kbd "яt") 'org-todo)
+    (define-key evil-org-mode-map (kbd "л '") 'org-insert-heading-after-current)
+    (define-key evil-org-mode-map (kbd "M-i") 'org-demote-subtree)
+    (define-key evil-org-mode-map (kbd "M-h") 'org-promote-subtree)
+    (define-key evil-org-mode-map (kbd "M-n") 'org-move-subtree-down)
+    (define-key evil-org-mode-map (kbd "M-e") 'org-move-subtree-up)
+  )
 
   (spacemacs/load-theme 'gruvbox-dark-hard)
   (setq linum-format "%d ")

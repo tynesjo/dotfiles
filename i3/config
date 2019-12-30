@@ -30,7 +30,7 @@ font pango:DejaVu Sans Mono 8
 set $mod  Mod5+Shift
 # navigation layer
 set $modb Mod4+Mod5
-set $alt Mod5
+set $alt  Mod5
 
 hide_edge_borders both
 
@@ -61,8 +61,10 @@ bindsym Greek_pi      kill
 #bindsym Greek_ETA fullscreen toggle
 
 ### External Application Calls
-bindcode  $mod + $right exec emacsclient -nc -s instance1
-bindcode  $modb+$right  exec emacsclient -nc -s instance1
+#bindcode  $mod + $right exec emacsclient -nc -s instance1
+bindcode  $mod + $right exec emacs
+#bindcode  $modb+$right  exec emacsclient -nc -s instance1
+bindcode  $modb+$right  exec emacs
 bindcode  $mod +$up     exec urxvt -cd "`xcwd`" --meta8
 bindcode  $modb+$up     exec urxvt
 bindcode  $mod +$left   exec dmenu_run
