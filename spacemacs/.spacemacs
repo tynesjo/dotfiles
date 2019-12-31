@@ -334,6 +334,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Org-Mode Custom Key-Bindings:
   (with-eval-after-load 'evil-org
     (define-key evil-org-mode-map (kbd "яt")  'org-todo)
+    ;; Tables (ignore for now)
     ;; Element insertion
     (define-key evil-org-mode-map (kbd "л'")  'org-insert-heading-after-current)
     (define-key evil-org-mode-map (kbd "лл'") 'org-insert-heading)
@@ -344,7 +345,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
     (define-key evil-org-mode-map (kbd "лh") 'org-do-promote)
     (define-key evil-org-mode-map (kbd "лi") 'org-do-demote)
-
+    ;; Navigation
+    (define-key evil-org-mode-map 'normal (kbd "h") 'evil-backward-char)
+    (define-key evil-org-mode-map 'normal (kbd "n") 'evil-next-line)
+    (define-key evil-org-mode-map 'normal (kbd "e") 'evil-previous-line)
+    (define-key evil-org-mode-map 'normal (kbd "i") 'evil-forward-char)
+    ;; Emphasis (works on regions)
+    ;; Trees
     (define-key evil-org-mode-map (kbd "M-i") 'org-demote-subtree)
     (define-key evil-org-mode-map (kbd "M-h") 'org-promote-subtree)
     (define-key evil-org-mode-map (kbd "M-n") 'org-move-subtree-down)
