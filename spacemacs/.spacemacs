@@ -346,11 +346,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (define-key evil-org-mode-map (kbd "лh") 'org-do-promote)
     (define-key evil-org-mode-map (kbd "лi") 'org-do-demote)
     ;; Navigation
-    (define-key evil-org-mode-map 'normal (kbd "h") 'evil-backward-char)
-    (define-key evil-org-mode-map 'normal (kbd "n") 'evil-next-line)
-    (define-key evil-org-mode-map 'normal (kbd "e") 'evil-previous-line)
-    (define-key evil-org-mode-map 'normal (kbd "i") 'evil-forward-char)
+;;    (define-key evil-org-mode-map 'normal (kbd "h") 'evil-backward-char)
+;;    (define-key evil-org-mode-map 'normal (kbd "n") 'evil-next-line)
+;;    (define-key evil-org-mode-map 'normal (kbd "e") 'evil-previous-line)
+;;    (define-key evil-org-mode-map 'normal (kbd "i") 'evil-forward-char)
     ;; Emphasis (works on regions)
+    ;; Clocking
+    (define-key evil-org-mode-map (kbd "кi") 'org-clock-in)
+    (define-key evil-org-mode-map (kbd "кo") 'org-clock-out)
+    (define-key evil-org-mode-map (kbd "кc") 'org-clock-cancel)
     ;; Trees
     (define-key evil-org-mode-map (kbd "M-i") 'org-demote-subtree)
     (define-key evil-org-mode-map (kbd "M-h") 'org-promote-subtree)
