@@ -333,13 +333,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map (kbd "'") 'evil-insert-state)
   ;; Org-Mode Custom Key-Bindings:
   (with-eval-after-load 'evil-org
-    (define-key evil-org-mode-map (kbd "яt") 'org-todo)
-    (define-key evil-org-mode-map (kbd "л '") 'org-insert-heading-after-current)
+    (define-key evil-org-mode-map (kbd "яt")  'org-todo)
+    ;; Element insertion
+    (define-key evil-org-mode-map (kbd "л'")  'org-insert-heading-after-current)
+    (define-key evil-org-mode-map (kbd "лл'") 'org-insert-heading)
+    (define-key evil-org-mode-map (kbd "лl")  'org-insert-link)
+
+    (define-key evil-org-mode-map (kbd "Л'")  (lambda()(interactive)(org-insert-subheading nil)))
     (define-key evil-org-mode-map (kbd "M-i") 'org-demote-subtree)
     (define-key evil-org-mode-map (kbd "M-h") 'org-promote-subtree)
     (define-key evil-org-mode-map (kbd "M-n") 'org-move-subtree-down)
-    (define-key evil-org-mode-map (kbd "M-e") 'org-move-subtree-up)
-  )
+    (define-key evil-org-mode-map (kbd "M-e") 'org-move-subtree-up))
 
   (spacemacs/load-theme 'gruvbox-dark-hard)
   (setq linum-format "%d ")
