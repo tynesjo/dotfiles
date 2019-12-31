@@ -342,6 +342,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (define-key evil-org-mode-map (kbd "Л'")  (lambda()(interactive)(org-insert-subheading nil)))
     (define-key evil-org-mode-map (kbd "лt")  (lambda()(interactive)(org-insert-todo-heading nil)))
 
+    (define-key evil-org-mode-map (kbd "лh") 'org-do-promote)
+    (define-key evil-org-mode-map (kbd "лi") 'org-do-demote)
+
     (define-key evil-org-mode-map (kbd "M-i") 'org-demote-subtree)
     (define-key evil-org-mode-map (kbd "M-h") 'org-promote-subtree)
     (define-key evil-org-mode-map (kbd "M-n") 'org-move-subtree-down)
