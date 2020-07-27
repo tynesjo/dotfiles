@@ -16,7 +16,8 @@ values."
    ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
    ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
    ;; lazy install any layer that support lazy installation even the layers
-   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+
+   ;; LISTED INu `DOTSPACEMACSu-configuration-layers'. `nil' disable the lazy
    ;; installation feature and you have to explicitly list a layer in the
    ;; variable `dotspacemacs-configuration-layers' to install it.
    ;; (default 'unused)
@@ -27,20 +28,29 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.dotfiles/spacemacs/")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(html
-     (keyboard-layout :variables kl-layout 'colemak-hnei)
+   '(yaml
+     windows-scripts
+     html
+     (keyboard-layout :variables
+                      kl-layout 'colemak-hnei
+                      kl-disabled-configurations nil)
      org
+     (mu4e :variables
+           mu4e-installation-path "~/arch-packages/mu/pkg/mu/usr/share/emacs/site-lisp/mu4e"
+           mu4e-mu-binary "~/bin/mu")
      themes-megapack
      dash
      ;;autothemer
      csv
      python
+     ipython-notebook
      sql
      ess
      vimscript
+     ;;docker
      markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -51,8 +61,7 @@ values."
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; git
-     ;; markdown
+     git
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -65,13 +74,17 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-     (vline :location (recipe :fetcher github :repo "emacsmirror/vline"))
-     (col-highlight :location (recipe :fetcher github :repo "emacsmirror/col-highlight"))
-     (hl-line+ :location (recipe :fetcher github :repo "emacsmirror/hl-line-plus"))
-     (hl-line)
+     ;;(vline :location (recipe :fetcher github :repo "emacsmirror/vline"))
+     ;;(col-highlight :location (recipe :fetcher github :repo "emacsmirror/col-highlight"))
+     ;;(hl-line+ :location (recipe :fetcher github :repo "emacsmirror/hl-line-plus"))
+     ;;(hl-line)
      ;;(crosshairs :location (recipe :fetcher github :repo "emacsmirror/crosshairs"))
      (fill-column-indicator)
      (xclip)
+ (org-babel-do-load-languages
+  'org-babel-load-languages
+  '((R . t)
+    (python . t)))
    )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -147,15 +160,15 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-     gruvbox-dark-hard
-     gruvbox-light-hard
+     gruvbox-dark-soft
+     gruvbox-light-soft
    )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("DejaVu Sans Mono"
-                               :size 15
+                               :size 16
                                :weight regular
                                :width normal
                                :powerline-scale 1.1)
@@ -276,12 +289,12 @@ values."
 ;;     :relative t
      :enabled-for-modes
        org-mode
-  ;;     text-mode
-  ;;     prog-mode
+       text-mode
+       prog-mode
+       markdown-mode
      :disabled-for-modes
        dired-mode
        doc-view-mode
-       markdown-mode
        pdf-view-mode
        :size-limit-kb 1000
    )
@@ -326,18 +339,18 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (mapc 'load (file-expand-wildcards `"~/.emacs.d/elpa/dash-*/dash.el"))`
   (mapc 'load (file-expand-wildcards "~/.emacs.d/elpa/autothemer-*/autothemer.el"))
-;;  (spacemacs/toggle-line-numbers-on)
 )
 
 (defun dotspacemacs/user-config ()
+  (spacemacs/toggle-line-numbers-on)
   (define-key evil-normal-state-map (kbd "'") 'evil-insert-state)
   ;; Org-Mode Custom Key-Bindings:
   (with-eval-after-load 'evil-org
     (define-key evil-org-mode-map (kbd "яt")  'org-todo)
     ;; Tables (ignore for now)
     ;; Element insertion
-    (define-key evil-org-mode-map (kbd "л'")  'org-insert-heading-after-current)
-    (define-key evil-org-mode-map (kbd "лл'") 'org-insert-heading)
+    (define-key evil-org-mode-map (kbd "л RET")  'org-insert-heading-after-current)
+    (define-key evil-org-mode-map (kbd "л'") 'org-insert-heading)
     (define-key evil-org-mode-map (kbd "лl")  'org-insert-link)
 
     (define-key evil-org-mode-map (kbd "Л'")  (lambda()(interactive)(org-insert-subheading nil)))
@@ -345,11 +358,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
     (define-key evil-org-mode-map (kbd "лh") 'org-do-promote)
     (define-key evil-org-mode-map (kbd "лi") 'org-do-demote)
-    ;; Navigation
-;;    (define-key evil-org-mode-map 'normal (kbd "h") 'evil-backward-char)
-;;    (define-key evil-org-mode-map 'normal (kbd "n") 'evil-next-line)
-;;    (define-key evil-org-mode-map 'normal (kbd "e") 'evil-previous-line)
-;;    (define-key evil-org-mode-map 'normal (kbd "i") 'evil-forward-char)
+;;    ;; Navigation
+;;    (define-key evil-org-mode-map (kbd "h") 'evil-backward-char)
+;;    (define-key evil-org-mode-map (kbd "n") 'evil-next-line)
+;;    (define-key evil-org-mode-map (kbd "e") 'evil-previous-line)
+;;    (define-key evil-org-mode-map (kbd "i") 'evil-forward-char)
     ;; Emphasis (works on regions)
     ;; Clocking
     (define-key evil-org-mode-map (kbd "кi") 'org-clock-in)
@@ -363,6 +376,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (spacemacs/load-theme 'gruvbox-dark-hard)
   (setq linum-format "%d ")
+  (setq org-todo-keywords '((type "TODO" "NEXT" "PENDING" "DELEGATED" "|" "DONE" "CANCELLED")))
 ;;  (evil-define-key 'normal global-map (kbd "i") (kbd "l"))
 ;; (evil-define-key 'normal global-map (kbd "l") (kbd "n"))
   (setq fill-column 88)
@@ -455,13 +469,14 @@ This function is called at the very end of Spacemacs initialization."
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#383838" t)
+ '(fci-rule-color "#383838")
+ '(helm-completion-style (quote emacs))
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain helm-org-rifle helm-org gnuplot evil-org darktooth-theme zeal-at-point helm-dash dash-docs jellybeans-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme solarized-theme-theme solarized-theme csv-mode crosshairs col-highlight vline hl-line+ mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (dockerfile-mode docker tablist json-mode docker-tramp json-snatcher json-reformat darktooth-theme zeal-at-point helm-dash dash-docs jellybeans-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme solarized-theme-theme solarized-theme csv-mode crosshairs col-highlight vline hl-line+ mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(standard-indent 2)
  '(vc-annotate-background "#2B2B2B")

@@ -68,6 +68,11 @@ config.bind(
 config.bind('p,', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
 config.bind('Pw', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
 
+# Hiding statusbar and/or tabs
+
+config.bind('xx', 'config-cycle statusbar.show always in-mode ;; config-cycle tabs.show always switching')
+config.bind('xt', 'config-cycle tabs.show always switching')
+config.bind('xb','config-cycle statusbar.show in-mode')
 
 # Hints (Colemak-easy characters only)
 c.hints.chars = 'tnseridhao'
@@ -102,8 +107,8 @@ nmap('ti', 'inspector')
 
 # Search Keywords
 c.url.searchengines = \
-    {'DEFAULT': 'https://www.google.com/search?lr=lang_en&q={}',
-     'go': 'https://www.google.com/search?lr=lang_en&q={}',
+    {'DEFAULT': 'https://www.google.com/search?q={}',
+     'go': 'https://www.google.com/search?q={}',
      'd': 'https://duckduckgo.com/?q={}',
      'w': 'http://en.wikipedia.org/w/index.php?search={}',
      'y': 'http://www.youtube.com/results?search_query={}',

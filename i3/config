@@ -1,10 +1,13 @@
 exec picom
 exec libinput-gestures-setup start
+exec_always --no-startup-id flashfocus
+
 ### Arguments / Parameters 
 
 # Display codes (computer screens):
 set $laptop_display     "DP-2"
-set $external_display   "HDMI-0"
+set $external_display   "DP-1"
+set $external_display_2 "HDMI-0"
 
 # Vim-style navigation keycodes:
 set $up    46
@@ -47,6 +50,8 @@ bindsym Greek_eta     focus up
 bindsym Greek_theta   focus right
 # Toggle Output
 bindsym Greek_iota    focus output left
+bindsym Cyrillic_i    focus output left
+bindsym Shift+Cyrillic_i exec    --no-startup-id flash_window
 bindsym Greek_kappa   focus output left
 bindsym Greek_lambda  focus output right
 bindsym Greek_mu      focus output right
@@ -62,7 +67,8 @@ bindsym Greek_pi      kill
 
 ### External Application Calls
 #bindcode  $mod + $right exec emacsclient -nc -s instance1
-bindcode  $mod + $right exec emacs
+#bindcode  $mod + $right exec emacsclient -c -s instance1 --eval "(progn (dotspacemacs/sync-configuration-layers))" &
+bindcode  $mod + $right exec emacsclient -c -s instance1 &
 #bindcode  $modb+$right  exec emacsclient -nc -s instance1
 bindcode  $modb+$right  exec emacs
 bindcode  $mod +$up     exec urxvt -cd "`xcwd`" --meta8
@@ -84,17 +90,17 @@ for_window [class="Toplevel"]                 floating enable
 for_window [class="Evince" instance="evince"] floating enable
 
 ### Workspaces
-# Target workspaces to specific displays (odd to laptop and even to external)
-workspace 1  output $laptop_display
-workspace 2  output $external_display
+# Target workspaces to specific displays (row mapped to location in stack)
+workspace 1  output $external_display_2
+workspace 2  output $external_display_2
+workspace 10 output $external_display_2
 workspace 3  output $laptop_display
-workspace 4  output $external_display
 workspace 5  output $laptop_display
-workspace 6  output $external_display
 workspace 7  output $laptop_display
-workspace 8  output $external_display
 workspace 9  output $laptop_display
-workspace 10 output $external_display
+workspace 4  output $external_display
+workspace 6  output $external_display
+workspace 8  output $external_display
 
 ### Modes
 bindcode Mod4+46 mode "WindowManagement"
@@ -182,6 +188,9 @@ bar {
 }
 
 bar {
+    mode hide
+    hidden_state hide
+    modifier $mod
     output $laptop_display
     status_command i3blocks
     tray_output primary
