@@ -10,20 +10,20 @@ set $external_display   "DP-1"
 set $external_display_2 "HDMI-0"
 
 # Vim-style navigation keycodes:
-set $up    46
-set $down  45
-set $left  44
-set $right 47
-set $one   39 workspace number 1
-set $two   38 workspace number 2
-set $three 54 workspace number 3
-set $four  26 workspace number 4
-set $five  53 workspace number 5
-set $six   25 workspace number 6
-set $seven 52 workspace number 7
-set $eight 24 workspace number 8
-set $nine  94 workspace number 9
-set $zero  40 workspace number 10
+set $up    33
+set $down  32
+set $left  31
+set $right 34
+#set $one   39 workspace number 1
+#set $two   38 workspace number 2
+#set $three 54 workspace number 3
+#set $four  26 workspace number 4
+#set $five  53 workspace number 5
+#set $six   25 workspace number 6
+#set $seven 52 workspace number 7
+#set $eight 24 workspace number 8
+#set $nine  94 workspace number 9
+#set $zero  40 workspace number 10
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -49,12 +49,12 @@ bindsym Greek_zeta    focus down
 bindsym Greek_eta     focus up
 bindsym Greek_theta   focus right
 # Toggle Output
-bindsym Greek_iota    focus output left
-bindsym Cyrillic_i    focus output left
+bindsym Greek_iota    focus output up
+bindsym Cyrillic_i    focus output up
 bindsym Shift+Cyrillic_i exec    --no-startup-id flash_window
-bindsym Greek_kappa   focus output left
-bindsym Greek_lambda  focus output right
-bindsym Greek_mu      focus output right
+bindsym Greek_kappa   focus output up
+bindsym Greek_lambda  focus output down
+bindsym Greek_mu      focus output down
 # Toggle Full-Screen
 bindsym Greek_nu      fullscreen toggle
 bindsym Greek_xi      fullscreen toggle
@@ -77,7 +77,7 @@ bindcode  $mod +$left   exec dmenu_run
 bindcode  $mod +$down   exec qutebrowser
 bindcode  $modb+$down   exec chromium
 # (Open new terminal window in current active directory)
-bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
+#bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
 
 ### Floating Windows
 # use Mouse+mod to drag floating windows to their wanted position
@@ -103,7 +103,7 @@ workspace 6  output $external_display
 workspace 8  output $external_display
 
 ### Modes
-bindcode Mod4+46 mode "WindowManagement"
+bindcode Mod4+33 mode "WindowManagement"
 bindsym  Hangul  mode "WindowManagement"
 
 mode "WindowManagement" {
@@ -147,27 +147,27 @@ mode "WindowManagement" {
     bindcode Mod4+$up    resize grow   height 1 px or 1 ppt
     bindcode Mod4+$down  resize shrink height 1 px or 1 ppt
     # Switch to workspace:
-    bindcode 39 workspace number 1; mode "default"
-    bindcode 38 workspace number 2; mode "default"
-    bindcode 54 workspace number 3; mode "default"
-    bindcode 26 workspace number 4; mode "default"
-    bindcode 53 workspace number 5; mode "default"
-    bindcode 25 workspace number 6; mode "default"
-    bindcode 52 workspace number 7; mode "default"
-    bindcode 24 workspace number 8; mode "default"
-    bindcode 94 workspace number 9; mode "default"
-    bindcode 40 workspace number 10; mode "default"
+    bindcode 26 workspace number 1; mode "default"
+    bindcode 25 workspace number 2; mode "default"
+    bindcode 41 workspace number 3; mode "default"
+    bindcode 13 workspace number 4; mode "default"
+    bindcode 40 workspace number 5; mode "default"
+    bindcode 12 workspace number 6; mode "default"
+    bindcode 39 workspace number 7; mode "default"
+    bindcode 11 workspace number 8; mode "default"
+    bindcode 38 workspace number 9; mode "default"
+    bindcode 27 workspace number 10; mode "default"
     # Move container to workspace: 
-    bindcode Mod5+39 move container to workspace number 1; mode "default"
-    bindcode Mod5+38 move container to workspace number 2; mode "default"
-    bindcode Mod5+54 move container to workspace number 3; mode "default"
-    bindcode Mod5+26 move container to workspace number 4; mode "default"
-    bindcode Mod5+53 move container to workspace number 5; mode "default"
-    bindcode Mod5+25 move container to workspace number 6; mode "default"
-    bindcode Mod5+52 move container to workspace number 7; mode "default"
-    bindcode Mod5+24 move container to workspace number 8; mode "default"
-    bindcode Mod5+94 move container to workspace number 9; mode "default"
-    bindcode Mod5+40 move container to workspace number 10; mode "default"
+    bindcode Mod5+26 move container to workspace number 1; mode "default"
+    bindcode Mod5+25 move container to workspace number 2; mode "default"
+    bindcode Mod5+41 move container to workspace number 3; mode "default"
+    bindcode Mod5+13 move container to workspace number 4; mode "default"
+    bindcode Mod5+40 move container to workspace number 5; mode "default"
+    bindcode Mod5+12 move container to workspace number 6; mode "default"
+    bindcode Mod5+39 move container to workspace number 7; mode "default"
+    bindcode Mod5+11 move container to workspace number 8; mode "default"
+    bindcode Mod5+38 move container to workspace number 9; mode "default"
+    bindcode Mod5+27 move container to workspace number 10; mode "default"
     # Exit back to default mode
     bindsym Escape mode "default"
 }
@@ -193,7 +193,7 @@ bar {
     modifier $mod
     output $laptop_display
     status_command i3blocks
-    tray_output primary
+    #tray_output primary
     colors {
       # Type             #border #bg     #font
       focused_workspace  #ffaaaa #000000 #aaaa00
