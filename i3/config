@@ -1,26 +1,25 @@
 exec picom
 exec libinput-gestures-setup start
+exec_always --no-startup-id flashfocus
+
 ### Arguments / Parameters 
 
 # Display codes (computer screens):
 set $laptop_display     "DP-2"
-set $external_display   "HDMI-0"
+set $external_display   "DP-1"
+set $external_display_2 "HDMI-0"
 
 # Vim-style navigation keycodes:
-set $up    46
-set $down  45
-set $left  44
-set $right 47
-set $one   39 workspace number 1
-set $two   38 workspace number 2
-set $three 54 workspace number 3
-set $four  26 workspace number 4
-set $five  53 workspace number 5
-set $six   25 workspace number 6
-set $seven 52 workspace number 7
-set $eight 24 workspace number 8
-set $nine  94 workspace number 9
-set $zero  40 workspace number 10
+set $up    33
+set $down  32
+set $left  31
+set $right 34
+set $space 65
+#set $one 39 workspace number 1 set $two 38 workspace number 2 set
+#$three 54 workspace number 3 set $four 26 workspace number 4 set $five 53
+#workspace number 5 set $six 25 workspace number 6 set $seven 52 workspace
+#number 7 set $eight 24 workspace number 8 set $nine 94 workspace number 9 set
+#$zero 40 workspace number 10
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -46,10 +45,12 @@ bindsym Greek_zeta    focus down
 bindsym Greek_eta     focus up
 bindsym Greek_theta   focus right
 # Toggle Output
-bindsym Greek_iota    focus output left
-bindsym Greek_kappa   focus output left
-bindsym Greek_lambda  focus output right
-bindsym Greek_mu      focus output right
+bindsym Greek_iota    focus output up
+bindsym Cyrillic_i    focus output up
+bindsym hebrew_zade exec    --no-startup-id flash_window
+bindsym Greek_kappa   focus output up
+bindsym Greek_lambda  focus output down
+bindsym Greek_mu      focus output down
 # Toggle Full-Screen
 bindsym Greek_nu      fullscreen toggle
 bindsym Greek_xi      fullscreen toggle
@@ -62,16 +63,18 @@ bindsym Greek_pi      kill
 
 ### External Application Calls
 #bindcode  $mod + $right exec emacsclient -nc -s instance1
-bindcode  $mod + $right exec emacs
-#bindcode  $modb+$right  exec emacsclient -nc -s instance1
-bindcode  $modb+$right  exec emacs
-bindcode  $mod +$up     exec urxvt -cd "`xcwd`" --meta8
-bindcode  $modb+$up     exec urxvt
-bindcode  $mod +$left   exec dmenu_run
-bindcode  $mod +$down   exec qutebrowser
+#bindcode  $mod + $right exec emacsclient -c -s instance1 --eval "(progn (dotspacemacs/sync-configuration-layers))" &
+#bindcode  Mod2 + $right exec emacsclient -c -s instance1 &
+#bindcode  Mod2 + $right exec emacs
+bindcode  $modb+$right  exec emacsclient -nc -s instance1
+bindcode  Mod2+$right  exec emacs
+bindcode  Mod2+$up     exec urxvt -cd "`xcwd`" --meta8
+#bindcode  $mod+$up     exec urxvt
+bindcode  Mod2+$left   exec dmenu_run
+bindcode  Mod2+$down   exec qutebrowser
 bindcode  $modb+$down   exec chromium
 # (Open new terminal window in current active directory)
-bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
+#bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
 
 ### Floating Windows
 # use Mouse+mod to drag floating windows to their wanted position
@@ -84,33 +87,37 @@ for_window [class="Toplevel"]                 floating enable
 for_window [class="Evince" instance="evince"] floating enable
 
 ### Workspaces
-# Target workspaces to specific displays (odd to laptop and even to external)
-workspace 1  output $laptop_display
-workspace 2  output $external_display
+# Target workspaces to specific displays (row mapped to location in stack)
+workspace 1  output $external_display_2
+workspace 2  output $external_display_2
+workspace 10 output $external_display_2
 workspace 3  output $laptop_display
-workspace 4  output $external_display
 workspace 5  output $laptop_display
-workspace 6  output $external_display
 workspace 7  output $laptop_display
-workspace 8  output $external_display
 workspace 9  output $laptop_display
-workspace 10 output $external_display
+workspace 4  output $external_display
+workspace 6  output $external_display
+workspace 8  output $external_display
 
 ### Modes
-bindcode Mod4+46 mode "WindowManagement"
-bindsym  Hangul  mode "WindowManagement"
+#bindcode Mod4+33 mode "WindowManagement"
+#bindsym  Hangul  mode "WindowManagement"
+bindsym  hebrew_aleph  mode "WindowManagement"
+
+### Kill window
+bindsym hebrew_chet kill
 
 mode "WindowManagement" {
     # Toggle Output
     bindsym Return focus output down; focus output right; mode "default"
     bindsym Tab focus output down; focus output right; mode "default"
     # Toggle Full-Screen
-    bindsym space fullscreen toggle; mode "default"
+    bindsym hebrew_aleph fullscreen toggle; mode "default"
     # Floating
     bindsym comma  floating toggle; mode "default"
     bindsym period focus mode_toggle; mode "default"
     # Kill
-    bindsym Hangul kill; mode "default"
+    #bindsym Hangul kill; mode "default"
     # Focus
     bindcode   $right       focus right;  mode "default"
     bindcode   $left        focus left ;  mode "default"
@@ -141,27 +148,27 @@ mode "WindowManagement" {
     bindcode Mod4+$up    resize grow   height 1 px or 1 ppt
     bindcode Mod4+$down  resize shrink height 1 px or 1 ppt
     # Switch to workspace:
-    bindcode 39 workspace number 1; mode "default"
-    bindcode 38 workspace number 2; mode "default"
-    bindcode 54 workspace number 3; mode "default"
-    bindcode 26 workspace number 4; mode "default"
-    bindcode 53 workspace number 5; mode "default"
-    bindcode 25 workspace number 6; mode "default"
-    bindcode 52 workspace number 7; mode "default"
-    bindcode 24 workspace number 8; mode "default"
-    bindcode 94 workspace number 9; mode "default"
-    bindcode 40 workspace number 10; mode "default"
+    bindcode 26 workspace number 1; mode "default"
+    bindcode 25 workspace number 2; mode "default"
+    bindcode 41 workspace number 3; mode "default"
+    bindcode 13 workspace number 4; mode "default"
+    bindcode 40 workspace number 5; mode "default"
+    bindcode 12 workspace number 6; mode "default"
+    bindcode 39 workspace number 7; mode "default"
+    bindcode 11 workspace number 8; mode "default"
+    bindcode 38 workspace number 9; mode "default"
+    bindcode 27 workspace number 10; mode "default"
     # Move container to workspace: 
-    bindcode Mod5+39 move container to workspace number 1; mode "default"
-    bindcode Mod5+38 move container to workspace number 2; mode "default"
-    bindcode Mod5+54 move container to workspace number 3; mode "default"
-    bindcode Mod5+26 move container to workspace number 4; mode "default"
-    bindcode Mod5+53 move container to workspace number 5; mode "default"
-    bindcode Mod5+25 move container to workspace number 6; mode "default"
-    bindcode Mod5+52 move container to workspace number 7; mode "default"
-    bindcode Mod5+24 move container to workspace number 8; mode "default"
-    bindcode Mod5+94 move container to workspace number 9; mode "default"
-    bindcode Mod5+40 move container to workspace number 10; mode "default"
+    bindcode Mod5+26 move container to workspace number 1; mode "default"
+    bindcode Mod5+25 move container to workspace number 2; mode "default"
+    bindcode Mod5+41 move container to workspace number 3; mode "default"
+    bindcode Mod5+13 move container to workspace number 4; mode "default"
+    bindcode Mod5+40 move container to workspace number 5; mode "default"
+    bindcode Mod5+12 move container to workspace number 6; mode "default"
+    bindcode Mod5+39 move container to workspace number 7; mode "default"
+    bindcode Mod5+11 move container to workspace number 8; mode "default"
+    bindcode Mod5+38 move container to workspace number 9; mode "default"
+    bindcode Mod5+27 move container to workspace number 10; mode "default"
     # Exit back to default mode
     bindsym Escape mode "default"
 }
@@ -182,9 +189,12 @@ bar {
 }
 
 bar {
+    mode hide
+    hidden_state hide
+    modifier $mod
     output $laptop_display
     status_command i3blocks
-    tray_output primary
+    #tray_output primary
     colors {
       # Type             #border #bg     #font
       focused_workspace  #ffaaaa #000000 #aaaa00
