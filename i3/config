@@ -15,11 +15,6 @@ set $down  32
 set $left  31
 set $right 34
 set $space 65
-#set $one 39 workspace number 1 set $two 38 workspace number 2 set
-#$three 54 workspace number 3 set $four 26 workspace number 4 set $five 53
-#workspace number 5 set $six 25 workspace number 6 set $seven 52 workspace
-#number 7 set $eight 24 workspace number 8 set $nine 94 workspace number 9 set
-#$zero 40 workspace number 10
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
