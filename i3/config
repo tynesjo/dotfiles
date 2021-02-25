@@ -14,7 +14,7 @@ set $up    33
 set $down  32
 set $left  31
 set $right 34
-set $space 65
+#set $space 58
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -172,6 +172,7 @@ mode "WindowManagement" {
 ### Status Bar(s)
 
 bar {
+    binding_mode_indicator no
     output $external_display
     status_command i3blocks
     colors {
@@ -184,9 +185,10 @@ bar {
 }
 
 bar {
+    binding_mode_indicator yes
     mode hide
     hidden_state hide
-    modifier $mod
+    modifier Ctrl
     output $laptop_display
     status_command i3blocks
     #tray_output primary
