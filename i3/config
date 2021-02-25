@@ -14,7 +14,7 @@ set $up    33
 set $down  32
 set $left  31
 set $right 34
-#set $space 58
+set $space 65
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -100,9 +100,10 @@ workspace 8  output $external_display
 bindsym  hebrew_aleph  mode "WindowManagement"
 
 ### Kill window
-bindsym hebrew_chet kill
 
 mode "WindowManagement" {
+    bindsym hebrew_zade kill; mode default
+    bindsym hebrew_waw kill; mode default
     # Toggle Output
     bindsym Return focus output down; focus output right; mode "default"
     bindsym Tab focus output down; focus output right; mode "default"
