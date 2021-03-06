@@ -38,9 +38,9 @@ values."
                       kl-layout 'colemak-hnei
                       kl-disabled-configurations nil)
      org
-     (mu4e :variables
-           mu4e-installation-path "~/arch-packages/mu/pkg/mu/usr/share/emacs/site-lisp/mu4e"
-           mu4e-mu-binary "~/bin/mu")
+     ;;(mu4e :variables
+     ;;      mu4e-installation-path "~/arch-packages/mu/pkg/mu/usr/share/emacs/site-lisp/mu4e"
+     ;;      mu4e-mu-binary "~/bin/mu")
      themes-megapack
      dash
      ;;autothemer
@@ -78,7 +78,7 @@ values."
      ;;(col-highlight :location (recipe :fetcher github :repo "emacsmirror/col-highlight"))
      ;;(hl-line+ :location (recipe :fetcher github :repo "emacsmirror/hl-line-plus"))
      ;;(hl-line)
-     ;;(crosshairs :location (recipe :fetcher github :repo "emacsmirror/crosshairs"))
+     ;;(crosshairs :location (recipe :fetchr github :repo "emacsmirror/crosshairs"))
      (fill-column-indicator)
      (xclip)
  (org-babel-do-load-languages
@@ -344,6 +344,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   (spacemacs/toggle-line-numbers-on)
   (define-key evil-normal-state-map (kbd "'") 'evil-insert-state)
+
+  (global-set-key (kbd "C-+") 'text-scale-increase)
+  (global-set-key (kbd "C--") 'text-scale-decrease)
   ;; Org-Mode Custom Key-Bindings:
   (with-eval-after-load 'evil-org
     (define-key evil-org-mode-map (kbd "яt")  'org-todo)
@@ -466,23 +469,110 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   ["#c0c0c0" "#336c6c" "#806080" "#0f2050" "#732f2c" "#23733c" "#6c1f1c" "#232333"])
+ '(beacon-color "#cc6666")
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
+ '(compilation-message-face 'default)
+ '(cua-global-mark-cursor-color "#3cafa5")
+ '(cua-normal-cursor-color "#8d9fa1")
+ '(cua-overwrite-cursor-color "#c49619")
+ '(cua-read-only-cursor-color "#93a61a")
+ '(custom-safe-themes
+   '("db7f422324a763cfdea47abf0f931461d1493f2ecf8b42be87bbbbbabf287bfe" "a390bea70629258d80f41a42098bafcc636cd5f29f2449f00a86c1dabf68358d" default))
+ '(diary-entry-marker 'font-lock-variable-name-face)
+ '(emms-mode-line-icon-color "#1fb3b3")
+ '(emms-mode-line-icon-image-cache
+   '(image :type xpm :ascent center :data "/* XPM */
+static char *note[] = {
+/* width height num_colors chars_per_pixel */
+\"    10   11        2            1\",
+/* colors */
+\". c #1ba1a1\",
+\"# c None s None\",
+/* pixels */
+\"###...####\",
+\"###.#...##\",
+\"###.###...\",
+\"###.#####.\",
+\"###.#####.\",
+\"#...#####.\",
+\"....#####.\",
+\"#..######.\",
+\"#######...\",
+\"######....\",
+\"#######..#\" };"))
  '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#383838")
- '(helm-completion-style (quote emacs))
+ '(fci-rule-color "#383838" t)
+ '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
+ '(frame-background-mode 'dark)
+ '(fringe-mode 6 nil (fringe))
+ '(gnus-logo-colors '("#1ec1c4" "#bababa") t)
+ '(gnus-mode-line-image-cache
+   '(image :type xpm :ascent center :data "/* XPM */
+static char *gnus-pointer[] = {
+/* width height num_colors chars_per_pixel */
+\"    18    13        2            1\",
+/* colors */
+\". c #1ba1a1\",
+\"# c None s None\",
+/* pixels */
+\"##################\",
+\"######..##..######\",
+\"#####........#####\",
+\"#.##.##..##...####\",
+\"#...####.###...##.\",
+\"#..###.######.....\",
+\"#####.########...#\",
+\"###########.######\",
+\"####.###.#..######\",
+\"######..###.######\",
+\"###....####.######\",
+\"###..######.######\",
+\"###########.######\" };") t)
+ '(helm-completion-style 'emacs)
+ '(highlight-changes-colors '("#e2468f" "#7a7ed2"))
+ '(highlight-symbol-colors
+   '("#3c2d404d3269" "#0c3545b04c96" "#4821335d34fc" "#1f853baf5636" "#2e95436932f0" "#44503571311b" "#0af140da592d"))
+ '(highlight-symbol-foreground-color "#9eacac")
+ '(highlight-tail-colors
+   '(("#01323d" . 0)
+     ("#687f00" . 20)
+     ("#008981" . 30)
+     ("#0069b0" . 50)
+     ("#936d00" . 60)
+     ("#a72e01" . 70)
+     ("#a81761" . 85)
+     ("#01323d" . 100)))
+ '(hl-bg-colors
+   '("#936d00" "#a72e01" "#ae1212" "#a81761" "#3548a2" "#0069b0" "#008981" "#687f00"))
+ '(hl-fg-colors
+   '("#002732" "#002732" "#002732" "#002732" "#002732" "#002732" "#002732" "#002732"))
+ '(jdee-db-active-breakpoint-face-colors (cons "#fafafa" "#3b6ea8"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#fafafa" "#4f894c"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#fafafa" "#bdbdbd"))
+ '(linum-format " %7d " t)
+ '(lsp-ui-doc-border "#9eacac")
  '(nrepl-message-colors
-   (quote
-    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
+ '(objed-cursor-color "#99324b")
  '(package-selected-packages
-   (quote
-    (dockerfile-mode docker tablist json-mode docker-tramp json-snatcher json-reformat darktooth-theme zeal-at-point helm-dash dash-docs jellybeans-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme solarized-theme-theme solarized-theme csv-mode crosshairs col-highlight vline hl-line+ mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
- '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+   '(vimrc-mode overseer nameless mu4e-maildirs-extension mu4e-alert helm-mu flycheck-package package-lint flycheck flycheck-elsa emr clang-format list-utils dactyl-mode darktooth-theme zeal-at-point helm-dash dash-docs jellybeans-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme solarized-theme-theme solarized-theme csv-mode crosshairs col-highlight vline hl-line+ mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+ '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
+ '(pos-tip-background-color "#01323d")
+ '(pos-tip-foreground-color "#9eacac")
+ '(smartrep-mode-line-active-bg (solarized-color-blend "#93a61a" "#01323d" 0.2))
  '(standard-indent 2)
+ '(term-default-bg-color "#002732")
+ '(term-default-fg-color "#8d9fa1")
+ '(tool-bar-mode nil)
  '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-background-mode nil)
  '(vc-annotate-color-map
-   (quote
-    ((20 . "#BC8383")
+   '((20 . "#BC8383")
      (40 . "#CC9393")
      (60 . "#DFAF8F")
      (80 . "#D0BF8F")
@@ -499,12 +589,19 @@ This function is called at the very end of Spacemacs initialization."
      (300 . "#7CB8BB")
      (320 . "#8CD0D3")
      (340 . "#94BFF3")
-     (360 . "#DC8CC3"))))
- '(vc-annotate-very-old-color "#DC8CC3"))
+     (360 . "#DC8CC3")))
+ '(vc-annotate-very-old-color "#DC8CC3")
+ '(weechat-color-list
+   '(unspecified "#002732" "#01323d" "#ae1212" "#ec423a" "#687f00" "#93a61a" "#936d00" "#c49619" "#0069b0" "#3c98e0" "#a81761" "#e2468f" "#008981" "#3cafa5" "#8d9fa1" "#60767e"))
+ '(window-divider-mode nil)
+ '(xterm-color-names
+   ["#01323d" "#ec423a" "#93a61a" "#c49619" "#3c98e0" "#e2468f" "#3cafa5" "#faf3e0"])
+ '(xterm-color-names-bright
+   ["#002732" "#db5823" "#62787f" "#60767e" "#8d9fa1" "#7a7ed2" "#9eacac" "#ffffee"]))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil)))))
+ )
 )
