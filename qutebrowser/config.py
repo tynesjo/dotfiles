@@ -47,6 +47,7 @@ c.tabs.new_position.unrelated = 'next'
 c.tabs.min_width = 200
 c.tabs.title.format = '{index}{private}{title_sep}{current_title}'
 
+c.statusbar.position = "top"
 
 # Zooming
 nmap('<Ctrl-e>', 'zoom-in')
