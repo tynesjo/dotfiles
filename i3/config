@@ -1,1 +1,251 @@
-/home/j/.config/i3/config
+exec picom
+exec libinput-gestures-setup start
+exec_always --no-startup-id flashfocus
+
+### Arguments / Parameters 
+
+# Display codes (computer screens):
+set $laptop_display     "DP-2"
+set $external_display   "DP-1"
+set $external_display_2 "HDMI-0"
+
+# Vim-style navigation keycodes:
+set $up    33
+set $down  32
+set $left  31
+set $right 34
+set $space 65
+#set $one 39 workspace number 1 set $two 38 workspace number 2 set
+#$three 54 workspace number 3 set $four 26 workspace number 4 set $five 53
+#workspace number 5 set $six 25 workspace number 6 set $seven 52 workspace
+#number 7 set $eight 24 workspace number 8 set $nine 94 workspace number 9 set
+#$zero 40 workspace number 10
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:DejaVu Sans Mono 8
+
+# default modifier
+set $mod  Mod5+Shift
+# navigation layer
+set $modb Mod4+Mod5
+set $alt  Mod5
+
+hide_edge_borders both
+
+### Trackpad Bindings
+# Move Container
+bindsym Greek_alpha   move left 
+bindsym Greek_beta    move down
+bindsym Greek_gamma   move up
+bindsym Greek_delta   move right
+# Focus Container
+bindsym Greek_epsilon focus left 
+bindsym Greek_zeta    focus down
+bindsym Greek_eta     focus up
+bindsym Greek_theta   focus right
+# Toggle Output
+bindsym Greek_iota    focus output up
+bindsym Cyrillic_i    focus output up
+bindsym hebrew_zade exec    --no-startup-id flash_window
+bindsym Greek_kappa   focus output up
+bindsym Greek_lambda  focus output down
+bindsym Greek_mu      focus output down
+# Toggle Full-Screen
+bindsym Greek_nu      fullscreen toggle
+bindsym Greek_xi      fullscreen toggle
+# Kill Container
+bindsym Greek_omicron kill
+bindsym Greek_pi      kill
+
+# Toggle Full-Screen (for Trackpad)
+#bindsym Greek_ETA fullscreen toggle
+
+### External Application Calls
+#bindcode  $mod + $right exec emacsclient -nc -s instance1
+#bindcode  $mod + $right exec emacsclient -c -s instance1 --eval "(progn (dotspacemacs/sync-configuration-layers))" &
+#bindcode  Mod2 + $right exec emacsclient -c -s instance1 &
+#bindcode  Mod2 + $right exec emacs
+bindcode  $modb+$right  exec emacsclient -nc -s instance1
+bindcode  Mod2+$right  exec emacs
+bindcode  Mod2+$up     exec urxvt -cd "`xcwd`" --meta8
+#bindcode  $mod+$up     exec urxvt
+bindcode  Mod2+$left   exec rofi -show combi
+bindcode  Mod2+$down   exec qutebrowser
+bindcode  $modb+$down   exec chromium
+# (Open new terminal window in current active directory)
+#bindcode  49           exec ~/keyboard/change-keyboard-layout.sh
+
+### Floating Windows
+# use Mouse+mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Set floating windows
+for_window [class="Cheese" instance="cheese"] floating enable
+for_window [class="R_x11" instance="r_x11"]   floating enable
+for_window [class="Toplevel"]                 floating enable
+for_window [class="Evince" instance="evince"] floating enable
+
+### Workspaces
+# Target workspaces to specific displays (row mapped to location in stack)
+workspace 1  output $external_display_2
+workspace 2  output $external_display_2
+workspace 10 output $external_display_2
+workspace 3  output $laptop_display
+workspace 5  output $laptop_display
+workspace 7  output $laptop_display
+workspace 9  output $laptop_display
+workspace 4  output $external_display
+workspace 6  output $external_display
+workspace 8  output $external_display
+
+### Modes
+#bindcode Mod4+33 mode "WindowManagement"
+#bindsym  Hangul  mode "WindowManagement"
+bindsym  hebrew_aleph  mode "WindowManagement"
+
+### Kill window
+
+mode "WindowManagement" {
+    bindsym hebrew_zade kill; mode default
+    bindsym hebrew_waw kill; mode default
+    # Toggle Output
+    bindsym Return focus output down; focus output right; mode "default"
+    bindsym Tab focus output down; focus output right; mode "default"
+    # Toggle Full-Screen
+    bindsym hebrew_aleph fullscreen toggle; mode "default"
+    # Floating
+    bindsym comma  floating toggle; mode "default"
+    bindsym period focus mode_toggle; mode "default"
+    # Kill
+    #bindsym Hangul kill; mode "default"
+    # Focus
+    bindcode   $right       focus right;  mode "default"
+    bindcode   $left        focus left ;  mode "default"
+    bindcode   $up          focus up;     mode "default"
+    bindcode   $down        focus down;   mode "default"
+    bindsym    q            focus parent; mode "default"
+    bindsym    a            focus child;  mode "default"
+    # Move
+    bindcode Mod5+$right  move right; mode "default"
+    bindcode Mod5+$left   move left ; mode "default"
+    bindcode Mod5+$up     move up;    mode "default"
+    bindcode Mod5+$down   move down;  mode "default"
+    ## Layout
+    bindsym l  layout stacking;     mode "default"
+    bindsym u  layout tabbed;       mode "default"
+    bindsym y  layout toggle split; mode "default"
+    # Split
+    bindsym k split h
+    bindsym m split v
+    # 3-pixel moves
+    bindcode Shift+$right resize grow   width  3 px or 3 ppt
+    bindcode Shift+$left  resize shrink width  3 px or 3 ppt
+    bindcode Shift+$up    resize grow   height 3 px or 3 ppt
+    bindcode Shift+$down  resize shrink height 3 px or 3 ppt
+    # 1-pixel moves
+    bindcode Mod4+$right resize grow   width  1 px or 1 ppt
+    bindcode Mod4+$left  resize shrink width  1 px or 1 ppt
+    bindcode Mod4+$up    resize grow   height 1 px or 1 ppt
+    bindcode Mod4+$down  resize shrink height 1 px or 1 ppt
+    # Switch to workspace:
+    bindcode 26 workspace number 1; mode "default"
+    bindcode 25 workspace number 2; mode "default"
+    bindcode 41 workspace number 3; mode "default"
+    bindcode 13 workspace number 4; mode "default"
+    bindcode 40 workspace number 5; mode "default"
+    bindcode 12 workspace number 6; mode "default"
+    bindcode 39 workspace number 7; mode "default"
+    bindcode 11 workspace number 8; mode "default"
+    bindcode 38 workspace number 9; mode "default"
+    bindcode 27 workspace number 10; mode "default"
+    # the "quiet" workspace
+    bindcode 28 exec $HOME/.config/i3/quiet-cmd.py switch; mode "default"
+    # Move container to workspace: 
+    bindcode Mod5+26 move container to workspace number 1; mode "default"
+    bindcode Mod5+25 move container to workspace number 2; mode "default"
+    bindcode Mod5+41 move container to workspace number 3; mode "default"
+    bindcode Mod5+13 move container to workspace number 4; mode "default"
+    bindcode Mod5+40 move container to workspace number 5; mode "default"
+    bindcode Mod5+12 move container to workspace number 6; mode "default"
+    bindcode Mod5+39 move container to workspace number 7; mode "default"
+    bindcode Mod5+11 move container to workspace number 8; mode "default"
+    bindcode Mod5+38 move container to workspace number 9; mode "default"
+    bindcode Mod5+27 move container to workspace number 10; mode "default"
+    # Exit back to default mode
+    bindsym Escape mode "default"
+}
+
+
+### Status Bar(s)
+
+bar {
+    output $external_display
+    status_command i3blocks
+    colors {
+      # Type             #border #bg     #font
+      focused_workspace  #ffaaaa #000000 #aaaa00
+      inactive_workspace #000000 #000000 #aaaa00
+      active_workspace   #000000 #ffaa00 #000000
+    }
+    position bottom
+}
+
+bar {
+    mode hide
+    hidden_state hide
+    modifier $mod
+    output $laptop_display
+    status_command i3blocks
+    #tray_output primary
+    colors {
+      # Type             #border #bg     #font
+      focused_workspace  #ffaaaa #000000 #aaaa00
+      inactive_workspace #000000 #000000 #aaaa00
+      active_workspace   #000000 #ffaa00 #000000
+    }
+    position top
+}
+
+
+### Color 
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #ffffff #ffffff #000000 #2e9ef4   #285577
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.focused_inactive #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+### Custom Control Key-Bindings 
+# audio volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# display brightness
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+### Scratchpad (not used)
+
+mode "quiet" {
+    # Move a window in and out the quiet mode
+    bindsym q exec ~/.config/i3/quiet-cmd.py toggle ; mode "default"
+
+    # Resize the window in quiet mode
+    bindsym s exec ~/.config/i3/quiet-cmd.py resize small
+    bindsym m exec ~/.config/i3/quiet-cmd.py resize medium
+    bindsym l exec ~/.config/i3/quiet-cmd.py resize large
+
+    # back to normal
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Caps_Lock mode "default"
+    bindsym $mod+d mode "default"
+}
+
+bindsym hebrew_chet mode "quiet"
+bindsym Shift+hebrew_chet exec $HOME/.config/i3/quiet-cmd.py switch
+#exec_always $HOME/.config/i3/quiet-toggle-bar.py --kill ### FIX this when switched to polybar 
