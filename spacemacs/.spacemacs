@@ -81,10 +81,6 @@ values."
      ;;(crosshairs :location (recipe :fetchr github :repo "emacsmirror/crosshairs"))
      (fill-column-indicator)
      (xclip)
- (org-babel-do-load-languages
-  'org-babel-load-languages
-  '((R . t)
-    (python . t)))
    )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -349,6 +345,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-set-key (kbd "C--") 'text-scale-decrease)
   ;; Org-Mode Custom Key-Bindings:
   (with-eval-after-load 'evil-org
+
+
+
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((R . t)
+       (python . t)))
+
     (define-key evil-org-mode-map (kbd "яt")  'org-todo)
     ;; Tables (ignore for now)
     ;; Element insertion
@@ -385,8 +389,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq fill-column 88)
   (setq fci-rule-width 1)
   (setq fci-rule-column 88)
+  (setq byte-compile-warnings '(cl-functions)) 
 ;;  (setq fci-rule-color "silver")
-  (fci-mode t)
+  ;;(fci-mode t)
   (xclip-mode 1)
 
   "Configuration function for user code.

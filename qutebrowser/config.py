@@ -44,10 +44,11 @@ c.tabs.background = True
 c.tabs.select_on_remove = 'prev'
 # open unrelated tabs after the current tab not last
 c.tabs.new_position.unrelated = 'next'
+c.statusbar.position = 'top'
+c.statusbar.show = 'in-mode'
 c.tabs.min_width = 200
 c.tabs.title.format = '{index}{private}{title_sep}{current_title}'
 
-c.statusbar.position = "top"
 
 # Zooming
 nmap('<Ctrl-e>', 'zoom-in')
@@ -55,9 +56,9 @@ nmap('<Ctrl-n>', 'zoom-out')
 c.zoom.default=120
 
 # Style Sheets
-c.content.user_stylesheets = [
-    '~/qutebrowser/custom-solarized/custom-mono.css'
-]
+#c.content.user_stylesheets = [
+#    '~/qutebrowser/custom-solarized/custom-mono.css'
+#]
 
 # Cycle Through Style Sheets
 config.bind(
@@ -131,7 +132,7 @@ nmap('E', 'tab-next')
 
 # Passthrough mode (all keys go to website)
 nmap(',', 'enter-mode passthrough')
-pmap('<Escape>', 'leave-mode')
+pmap('<Escape>', 'mode-leave')
 
 # open new private window
 nmap('tp', 'open -p')
@@ -152,3 +153,7 @@ nmap('\'', 'enter-mode insert' )
 
 config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/77.0', 'https://accounts.google.com/*')
 
+# Content Blocking
+#c.content.host_blocking.enabled = True
+
+#config.load_autoconfig(False)
