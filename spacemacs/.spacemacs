@@ -381,7 +381,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (define-key evil-org-mode-map (kbd "M-n") 'org-move-subtree-down)
     (define-key evil-org-mode-map (kbd "M-e") 'org-move-subtree-up))
 
-  (spacemacs/load-theme 'gruvbox-dark-hard)
+  (spacemacs/load-theme 'zenburn)
   (setq linum-format "%d ")
   (setq org-todo-keywords '((type "TODO" "NEXT" "PENDING" "DELEGATED" "|" "DONE" "CANCELLED")))
 ;;  (evil-define-key 'normal global-map (kbd "i") (kbd "l"))
