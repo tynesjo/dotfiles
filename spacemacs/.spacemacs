@@ -2,6 +2,13 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+;; Use variable width font faces in current buffer
+(defun my-buffer-face-mode-variable ()
+  "Set font to a variable width (proportional) fonts in current buffer"
+  (interactive)
+  (setq buffer-face-mode-face '(:family "cmr10"))
+  (buffer-face-mode))
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -37,7 +44,7 @@ values."
      (keyboard-layout :variables
                       kl-layout 'colemak-hnei
                       kl-disabled-configurations nil)
-     ;;org
+     org
      ;;(mu4e :variables
      ;;      mu4e-installation-path "~/arch-packages/mu/pkg/mu/usr/share/emacs/site-lisp/mu4e"
      ;;      mu4e-mu-binary "~/bin/mu")
@@ -339,6 +346,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
 )
 
 (defun dotspacemacs/user-config ()
+
+  (add-hook 'org-mode-hook (lambda ()
+                             (setq buffer-face-mode-face '(:family "Open Sans"))
+                             (buffer-face-mode)))
+
+
   (spacemacs/toggle-line-numbers-on)
   (define-key evil-normal-state-map (kbd "'") 'evil-insert-state)
 
@@ -354,32 +367,32 @@ before packages are loaded. If you are unsure, you should try in setting them in
      '((R . t)
        (python . t)))
 
- ;;   (define-key evil-org-mode-map (kbd "яt")  'org-todo)
+    (define-key evil-org-mode-map (kbd "яt")  'org-todo)
     ;; Tables (ignore for now)
     ;; Element insertion
-;;    (define-key evil-org-mode-map (kbd "л RET")  'org-insert-heading-after-current)
-;;    (define-key evil-org-mode-map (kbd "л'") 'org-insert-heading)
-;;    (define-key evil-org-mode-map (kbd "лl")  'org-insert-link)
+    (define-key evil-org-mode-map (kbd "л RET")  'org-insert-heading-after-current)
+    (define-key evil-org-mode-map (kbd "л'") 'org-insert-heading)
+    (define-key evil-org-mode-map (kbd "лl")  'org-insert-link)
 
-;;    (define-key evil-org-mode-map (kbd "Л'")  (lambda()(interactive)(org-insert-subheading nil)))
-;;    (define-key evil-org-mode-map (kbd "лt")  (lambda()(interactive)(org-insert-todo-heading nil)))
+    (define-key evil-org-mode-map (kbd "Л'")  (lambda()(interactive)(org-insert-subheading nil)))
+    (define-key evil-org-mode-map (kbd "лt")  (lambda()(interactive)(org-insert-todo-heading nil)))
 
-;;    (define-key evil-org-mode-map (kbd "лh") 'org-do-promote)
-;;    (define-key evil-org-mode-map (kbd "лi") 'org-do-demote)
-;;    ;; Navigation
-;;    (define-key evil-org-mode-map (kbd "h") 'evil-backward-char)
-;;    (define-key evil-org-mode-map (kbd "n") 'evil-next-line)
-;;    (define-key evil-org-mode-map (kbd "e") 'evil-previous-line)
-;;    (define-key evil-org-mode-map (kbd "i") 'evil-forward-char)
+    (define-key evil-org-mode-map (kbd "лh") 'org-do-promote)
+    (define-key evil-org-mode-map (kbd "лi") 'org-do-demote)
+    ;; Navigation
+    (define-key evil-org-mode-map (kbd "h") 'evil-backward-char)
+    (define-key evil-org-mode-map (kbd "n") 'evil-next-line)
+    (define-key evil-org-mode-map (kbd "e") 'evil-previous-line)
+    (define-key evil-org-mode-map (kbd "i") 'evil-forward-char)
     ;; Emphasis (works on regions)
     ;; Clocking
-;;    (define-key evil-org-mode-map (kbd "кi") 'org-clock-in)
-;;    (define-key evil-org-mode-map (kbd "кo") 'org-clock-out)
-;;    (define-key evil-org-mode-map (kbd "кc") 'org-clock-cancel)
+    (define-key evil-org-mode-map (kbd "кi") 'org-clock-in)
+    (define-key evil-org-mode-map (kbd "кo") 'org-clock-out)
+    (define-key evil-org-mode-map (kbd "кc") 'org-clock-cancel)
     ;; Trees
-;;    (define-key evil-org-mode-map (kbd "M-i") 'org-demote-subtree)
-;;    (define-key evil-org-mode-map (kbd "M-h") 'org-promote-subtree)
-;;    (define-key evil-org-mode-map (kbd "M-n") 'org-move-subtree-down)
+    (define-key evil-org-mode-map (kbd "M-i") 'org-demote-subtree)
+    (define-key evil-org-mode-map (kbd "M-h") 'org-promote-subtree)
+    (define-key evil-org-mode-map (kbd "M-n") 'org-move-subtree-down)
     ;;    (define-key evil-org-mode-map (kbd "M-e") 'org-move-subtree-up)
     )
 
@@ -391,7 +404,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq fill-column 88)
   (setq fci-rule-width 1)
   (setq fci-rule-column 88)
-  (setq byte-compile-warnings '(cl-functions)) 
+  (setq byte-compile-warnings '(cl-functions))
 ;;  (setq fci-rule-color "silver")
   ;;(fci-mode t)
   (xclip-mode 1)
@@ -567,7 +580,7 @@ static char *gnus-pointer[] = {
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(objed-cursor-color "#99324b")
  '(package-selected-packages
-   '(nix-mode helm-nixos-options nixos-options darktooth-theme zeal-at-point helm-dash dash-docs jellybeans-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme solarized-theme-theme solarized-theme csv-mode crosshairs col-highlight vline hl-line+ mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+   '(orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain helm-org-rifle gnuplot evil-org darktooth-theme zeal-at-point helm-dash dash-docs jellybeans-theme zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme solarized-theme-theme solarized-theme csv-mode crosshairs col-highlight vline hl-line+ mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(pos-tip-background-color "#01323d")
  '(pos-tip-foreground-color "#9eacac")
