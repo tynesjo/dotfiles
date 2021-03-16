@@ -349,7 +349,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 )
 
 (defun dotspacemacs/user-config ()
-
+  (setq-default display-line-numbers-width nil)
+  (setq-default display-line-numbers-width-start 10000)
   (add-hook 'org-mode-hook (lambda ()
                              (setq buffer-face-mode-face '(:family "Open Sans"))
                              (buffer-face-mode)))
