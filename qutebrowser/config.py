@@ -131,7 +131,7 @@ nmap('N', 'tab-prev')
 nmap('E', 'tab-next')
 
 # Passthrough mode (all keys go to website)
-nmap(',', 'enter-mode passthrough')
+nmap(',', 'mode-enter passthrough')
 pmap('<Escape>', 'mode-leave')
 
 # open new private window
