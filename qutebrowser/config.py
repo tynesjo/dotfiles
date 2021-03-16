@@ -147,7 +147,7 @@ nmap('b', 'set-cmd-text --space :buffer')
 
 nunmap('i')
 
-nmap('\'', 'enter-mode insert' )
+nmap('\'', 'mode-enter insert' )
 
 # Google Accounts
 
